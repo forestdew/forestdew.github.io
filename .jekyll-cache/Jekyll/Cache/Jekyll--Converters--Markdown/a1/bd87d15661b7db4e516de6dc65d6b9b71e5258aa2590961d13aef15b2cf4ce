@@ -1,4 +1,4 @@
-I"�<p>2015 年 9 月，Apple 重磅发布了全新的 iPhone 6s/6s Plus、iPad Pro 与全新的操作系统 watchOS 2 与 tvOS 9（是的，这货居然是第 9 版），加上已经发布的 iOS 9，它们都为前端世界带来了哪些变化呢？作为一个 web 开发者，是时候站在我们的角度来说一说了！</p>
+I"��<p>2015 年 9 月，Apple 重磅发布了全新的 iPhone 6s/6s Plus、iPad Pro 与全新的操作系统 watchOS 2 与 tvOS 9（是的，这货居然是第 9 版），加上已经发布的 iOS 9，它们都为前端世界带来了哪些变化呢？作为一个 web 开发者，是时候站在我们的角度来说一说了！</p>
 
 <blockquote>
   <p><strong>注！</strong> 该译文存在大量英文术语，笔者将默认读者知晓 ES6、viewport、native app、webview 等常用前端术语，并不对这些已知术语进行汉语翻译
@@ -113,11 +113,15 @@
 
 <p>在这个模式下，无论横屏还是竖屏，所有的 iPad（包括 Pro）都会把你的网站以 320px 的 viewport 宽度进行渲染，就好像在一个大 iPhone 5 上一样。你可以在 CSS 中通过 media query（媒体查询）探测到这个模式：</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">/* iPad Air or iPad Mini */</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="c">/* iPad Air or iPad Mini */</span>
 <span class="o">(</span><span class="nt">device-width</span><span class="o">:</span> <span class="nt">768px</span><span class="o">)</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">width</span><span class="o">:</span> <span class="nt">320px</span><span class="o">)</span>
 <span class="c">/* iPad Pro */</span>
 <span class="o">(</span><span class="nt">device-width</span><span class="o">:</span> <span class="nt">1024px</span><span class="o">)</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">width</span><span class="o">:</span> <span class="nt">320px</span><span class="o">)</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h4 id="split-view分屏视图">Split View（分屏视图）</h4>
 
@@ -226,12 +230,17 @@
 
 <p>举个例子，我们可以在内嵌模式与 PiP 模式中切换：</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">video</span><span class="p">.</span><span class="nx">webkitSetPresentationMode</span><span class="p">(</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nx">video</span><span class="p">.</span><span class="nx">webkitSetPresentationMode</span><span class="p">(</span>
     <span class="nx">video</span><span class="p">.</span><span class="nx">webkitPresentationMode</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">picture-in-picture</span><span class="dl">"</span> <span class="p">?</span>
     <span class="dl">"</span><span class="s2">inline</span><span class="dl">"</span> <span class="p">:</span> 
     <span class="dl">"</span><span class="s2">picture-in-picture</span><span class="dl">"</span>
 <span class="p">);</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>我们还可以通过新的 <code class="highlighter-rouge">onwebkitpresentationmodechanged</code> 事件来检测 Presentation Mode（展示模式）的变化。</p>
 
@@ -241,12 +250,17 @@
 
 <p>iOS 9 上的 Safari 现在支持了来自 Filter Effect v2 spec（滤镜特效第二版规范）的 <strong>backdrop-filter</strong>。比如说，我们可以使用一个半透明的背景并且对其背后的背景使用滤镜：</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">header</span> <span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nt">header</span> <span class="p">{</span>
    <span class="nl">background-color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="p">,</span> <span class="m">255</span><span class="p">,</span> <span class="m">255</span><span class="p">,</span> <span class="m">0.4</span><span class="p">);</span>
    <span class="nl">-webkit-backdrop-filter</span><span class="p">:</span> <span class="n">blur</span><span class="p">(</span><span class="m">5px</span><span class="p">);</span>
    <span class="py">backdrop-filter</span><span class="p">:</span> <span class="n">blur</span><span class="p">(</span><span class="m">5px</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p><img src="http://www.mobilexweb.com/wp-content/uploads/2015/09/backdrop.png" alt="backdrop" /></p>
 
@@ -256,13 +270,19 @@
 
 <p>来看个例子：</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">#photo-gallery</span><span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nf">#photo-gallery</span><span class="p">{</span>
     <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
     <span class="nl">overflow-x</span><span class="p">:</span> <span class="nb">scroll</span><span class="p">;</span>
     <span class="nl">-webkit-scroll-snap-points-x</span><span class="p">:</span> <span class="nb">repeat</span><span class="p">(</span><span class="m">100%</span><span class="p">);</span>
     <span class="nl">-webkit-scroll-snap-type</span><span class="p">:</span> <span class="n">mandatory</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p>想要看个跑起来后的例子？笔者为大家准备了 webkit 的官方 <a href="http://www.webkit.org/demos/scroll-snap/">demo</a>，不过这个属性目前只支持 iOS 9 Safari 哦，并不支持 webview</p>
@@ -272,15 +292,19 @@
 
 <p>CSS Supports，包括 CSS <code class="highlighter-rouge">@supports</code> 与来自 CSS Conditional Rules Module Level 3 spec 的 JavaScript CSS Supports API 都在 iOS 上迎来降临。现在，我们可以针对某个 CSS 属性的特定值的支持情况来编写代码：</p>
 
-<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@supports</span><span class="p">(</span><span class="n">-webkit-scroll-snap-type</span><span class="p">:</span> <span class="n">mandatory</span><span class="p">)</span> <span class="p">{</span>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">@supports</span><span class="p">(</span><span class="n">-webkit-scroll-snap-type</span><span class="p">:</span> <span class="n">mandatory</span><span class="p">)</span> <span class="p">{</span>
     <span class="c">/* we use it */</span>
 <span class="p">}</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>同样，使用 JavaScript：</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="nx">CSS</span><span class="p">.</span><span class="nx">supports</span><span class="p">(</span><span class="dl">"</span><span class="s2">-webkit-scroll-snap-type</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">mandatory</span><span class="dl">"</span><span class="p">))</span> <span class="p">{}</span>
-</code></pre></div></div>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">if</span> <span class="p">(</span><span class="nx">CSS</span><span class="p">.</span><span class="nx">supports</span><span class="p">(</span><span class="dl">"</span><span class="s2">-webkit-scroll-snap-type</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">mandatory</span><span class="dl">"</span><span class="p">))</span> <span class="p">{}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="一些细微的改进">一些细微的改进</h3>
 

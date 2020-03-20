@@ -1,4 +1,4 @@
-I">�<h2 id="basic">Basic</h2>
+I"O�<h2 id="basic">Basic</h2>
 
 <blockquote>
   <p>每次我们使用 <code class="highlighter-rouge">Inductive</code> 来声明数据类型时，Coq 会自动为这个类型生成 <em>归纳原理</em>。
@@ -7,21 +7,31 @@ Every time we declare a new <code class="highlighter-rouge">Inductive</code> dat
 
 <p>自然数的归纳原理:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Check</span><span class="w"> </span><span class="no">nat_ind</span><span class="pi">.</span><span class="w"> </span><span class="p">:</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="k">Check</span><span class="w"> </span><span class="no">nat_ind</span><span class="pi">.</span><span class="w"> </span><span class="p">:</span><span class="w">
 
 </span><span class="p">∀</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="o">,</span><span class="w">
   </span><span class="no">P</span><span class="w"> </span><span class="mi">0</span><span class="w">  </span><span class="p">→</span><span class="w">
   </span><span class="o">(</span><span class="p">∀</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">n</span><span class="o">))</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="p">∀</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>written as inference rule:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                    P 0
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>                    P 0
   ∀ n : nat, P n -&gt; P (S n)
   -------------------------
   ∀ n : nat,        P n
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p><code class="highlighter-rouge">induction</code> tactic is wrapper of <code class="highlighter-rouge">apply t_ind</code></p>
@@ -44,7 +54,16 @@ the idea of an induction principle still makes sense for them: it gives a way to
 
 <h3 id="non-recursive">Non-recursive</h3>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">yesno</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">yesno</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">yes</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">no</span><span class="pi">.</span><span class="w">
 
@@ -53,17 +72,30 @@ the idea of an induction principle still makes sense for them: it gives a way to
   </span><span class="no">P</span><span class="w"> </span><span class="no">yes</span><span class="w">  </span><span class="p">→</span><span class="w">
   </span><span class="no">P</span><span class="w"> </span><span class="no">no</span><span class="w">   </span><span class="p">→</span><span class="w">
   </span><span class="p">∀</span><span class="w"> </span><span class="no">y</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">yesno</span><span class="o">,</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">y</span><span class="w"> 
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             P yes 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>             P yes 
              P no
 ------------------
 ∀ y : yesno, P y 
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="structural-recursive">Structural-Recursive</h3>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">natlist</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">natlist</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">nnil</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">ncons</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">l</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">natlist</span><span class="o">).</span><span class="w">
 
@@ -72,13 +104,17 @@ the idea of an induction principle still makes sense for them: it gives a way to
   </span><span class="no">P</span><span class="w"> </span><span class="no">nnil</span><span class="w">  </span><span class="p">→</span><span class="w">
   </span><span class="o">(</span><span class="p">∀</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">l</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">natlist</span><span class="o">),</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">l</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">(</span><span class="no">ncons</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">l</span><span class="o">))</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="p">∀</span><span class="w"> </span><span class="no">l</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">natlist</span><span class="o">,</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">l</span><span class="w"> 
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                                  P nnil 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>                                  P nnil 
 ∀ (n : nat) (l : natlist), P l -&gt; P (ncons n l)
 -----------------------------------------------
 ∀ l : natlist,                    P l 
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p><code class="highlighter-rouge">P</code> only need to fullfill <code class="highlighter-rouge">l : the_type</code> but not <code class="highlighter-rouge">n:nat</code> since we are proving property of <code class="highlighter-rouge">the_type</code>.</p>
 
@@ -92,7 +128,17 @@ the idea of an induction principle still makes sense for them: it gives a way to
   </ul>
 </blockquote>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> 
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> 
   </span><span class="o">|</span><span class="w"> </span><span class="no">c1</span><span class="w"> </span><span class="o">(</span><span class="no">x1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">a1</span><span class="o">)</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="o">(</span><span class="no">xn</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">an</span><span class="o">)</span><span class="w">
   </span><span class="o">...</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">cn</span><span class="w"> </span><span class="o">...</span><span class="w">
@@ -102,7 +148,7 @@ the idea of an induction principle still makes sense for them: it gives a way to
               </span><span class="o">...</span><span class="w"> </span><span class="no">case</span><span class="w"> </span><span class="no">for</span><span class="w"> </span><span class="no">c2</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="o">...</span><span class="w">
               </span><span class="o">...</span><span class="w"> </span><span class="no">case</span><span class="w"> </span><span class="no">for</span><span class="w"> </span><span class="no">cn</span><span class="w"> </span><span class="o">...</span><span class="w"> </span><span class="p">→</span><span class="w">
               </span><span class="p">∀</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">t</span><span class="o">,</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>对于 <code class="highlighter-rouge">t</code> 的归纳原理是又所有对于 <code class="highlighter-rouge">c</code> 的归纳原理所组成的: （即所有 case 成立)</p>
 
@@ -117,7 +163,16 @@ the idea of an induction principle still makes sense for them: it gives a way to
 
 <p>接下来考虑多态列表：</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">(* in ADT syntax *)</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="c">(* in ADT syntax *)</span><span class="w">
 </span><span class="k">Inductive</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="o">(</span><span class="no">X</span><span class="p">:</span><span class="kr">Type</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">nil</span><span class="w"> 
   </span><span class="o">|</span><span class="w"> </span><span class="no">cons</span><span class="w"> </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">l'</span><span class="p">:</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> 
@@ -126,7 +181,7 @@ the idea of an induction principle still makes sense for them: it gives a way to
 </span><span class="k">Inductive</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="o">(</span><span class="no">X</span><span class="p">:</span><span class="kr">Type</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">nil</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">X</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">cons</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">X</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p>here, the whole def is <em>parameterized</em> on a <code class="highlighter-rouge">set X</code>: that is, we are defining a <em>family</em> of inductive types <code class="highlighter-rouge">list X</code>, one for each <code class="highlighter-rouge">X</code>.</p>
@@ -143,13 +198,25 @@ when applied to a type <code class="highlighter-rouge">X</code>, gives us back a
 <p>因此，其归纳定理 <code class="highlighter-rouge">list_ind</code> 是一个被 <code class="highlighter-rouge">X</code> 参数化多态的函数。
 当应用 <code class="highlighter-rouge">X : Type</code> 时，返回一个特化在 <code class="highlighter-rouge">list X : Type</code> 上的归纳原理</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">list_ind</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="o">(</span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="no">list_ind</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="o">(</span><span class="no">X</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="o">),</span><span class="w">
     </span><span class="no">P</span><span class="w"> </span><span class="o">[]</span><span class="w"> </span><span class="p">→</span><span class="w">
     </span><span class="o">(</span><span class="p">∀</span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">X</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">l</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">X</span><span class="o">),</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">l</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="no">l</span><span class="o">))</span><span class="w"> </span><span class="p">→</span><span class="w">
     </span><span class="p">∀</span><span class="no">l</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">list</span><span class="w"> </span><span class="no">X</span><span class="o">,</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">l</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>∀(X : Type), {
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>∀(X : Type), {
 
                            P []                   -- base structure holds
     ∀(x : X) (l : list X), P l → P (x :: l)       -- sub-structure holds -&gt; structure holds
@@ -157,7 +224,7 @@ when applied to a type <code class="highlighter-rouge">X</code>, gives us back a
     ∀l : list X,           P l                    -- all structure holds
 
 }
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="induction-hypotheses-归纳假设">Induction Hypotheses 归纳假设</h2>
 
@@ -192,26 +259,37 @@ to keep a var generial…we can either change variable order under <code class="
 
 <p>考虑命题 <code class="highlighter-rouge">even</code>:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="k">Inductive</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="w"> </span><span class="k">Inductive</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">ev_0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="mi">0</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">ev_SS</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">n</span><span class="o">)).</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>我们可以猜测一个最 general 的归纳假设：</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">ev_ind_max</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">(</span><span class="p">∀</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="no">ev_ind_max</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="o">(</span><span class="p">∀</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="o">),</span><span class="w">
   </span><span class="no">P</span><span class="w"> </span><span class="no">O</span><span class="w"> </span><span class="no">ev_0</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="o">(</span><span class="p">∀</span><span class="o">(</span><span class="no">m</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">E</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="no">m</span><span class="o">),</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="no">E</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">m</span><span class="o">))</span><span class="w"> </span><span class="o">(</span><span class="no">ev_SS</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="no">E</span><span class="o">))</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="p">∀</span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">E</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="no">n</span><span class="o">),</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">E</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>即:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                                   P 0 ev_0                    -- base 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>                                   P 0 ev_0                    -- base 
   ∀(m : nat) (E : even m), P m E → P (S (S m)) (ev_SS m E)     -- sub structure -&gt; structure
   --------------------------------------------------------
   ∀(n : nat) (E : even n),         P n E                       -- all structure
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>注意这里:</p>
 
@@ -247,25 +325,35 @@ to keep a var generial…we can either change variable order under <code class="
 <p>因此我们也不希望生成的归纳假设是包括证据的…
 原来的归纳假设：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ∀P : (∀n : nat, even n → Prop),
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  ∀P : (∀n : nat, even n → Prop),
   ... →
   ∀(n : nat) (E : even n), P n E
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>可以被简化为只对 <code class="highlighter-rouge">nat</code> 参数化的归纳假设：</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ∀P : nat → Prop,
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>  ∀P : nat → Prop,
   ... →
   ∀(n : nat) (E: even n), P n
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>因此 coq 生成的归纳原理也是不包括证据的。注意 <code class="highlighter-rouge">P</code> 丢弃了参数 <code class="highlighter-rouge">E</code>:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">even_ind</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="no">even_ind</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="o">,</span><span class="w">
   </span><span class="no">P</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="o">(</span><span class="p">∀</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">n</span><span class="o">)))</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="p">∀</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">even</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">*)</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>用人话说就是：</p>
 <ol>
@@ -276,31 +364,45 @@ to keep a var generial…we can either change variable order under <code class="
 
 <h3 id="general-parameter">“General Parameter”</h3>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">le</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">le</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">le_n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="no">n</span><span class="o">,</span><span class="w">               </span><span class="no">le</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">n</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">le_S</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="o">,</span><span class="w"> </span><span class="o">(</span><span class="no">le</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="o">)</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="o">(</span><span class="no">le</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">m</span><span class="o">)).</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">le</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="p">:</span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">le</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="p">:</span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">le_n</span><span class="w">                </span><span class="p">:</span><span class="w"> </span><span class="no">le</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">n</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">le_S</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">(</span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">le</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">le</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">m</span><span class="o">).</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>两者虽然等价，但是共同的 <code class="highlighter-rouge">∀ n</code> 可以被提升为 typecon 的参数, i.e. “General Parameter” to the whole definition.</p>
 
 <p>其生成的归纳假设也会不同: (after renaming)</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">le_ind</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="no">le_ind</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="o">,</span><span class="w">
   </span><span class="o">(</span><span class="p">∀</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">n</span><span class="o">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
   </span><span class="o">(</span><span class="p">∀</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">le</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">m</span><span class="o">))</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
   </span><span class="p">∀</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">le</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> 
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">le_ind</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="no">le_ind</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="o">),</span><span class="w">
   </span><span class="no">P</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
   </span><span class="o">(</span><span class="p">∀</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">m</span><span class="o">))</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
   </span><span class="p">∀</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">m</span><span class="w"> 
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>The 1st one looks more symmetric but 2nd one is easier (for proving things).</p>
 

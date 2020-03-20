@@ -1,4 +1,4 @@
-I"�{<p>基本的定理依赖关系 top-down:</p>
+I"!�<p>基本的定理依赖关系 top-down:</p>
 
 <p>Type Safety</p>
 <ul>
@@ -22,7 +22,16 @@
 
 <p>对于我们只有 <code class="highlighter-rouge">bool</code> 一个 base type 的 STLC，只需要 <code class="highlighter-rouge">bool</code> 和 <code class="highlighter-rouge">λ</code>:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">canonical_forms_bool</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">t</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="k">Lemma</span><span class="w"> </span><span class="no">canonical_forms_bool</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">t</span><span class="o">,</span><span class="w">
   </span><span class="no">empty</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">Bool</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">value</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="o">(</span><span class="no">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">tru</span><span class="o">)</span><span class="w"> </span><span class="p">∨</span><span class="w"> </span><span class="o">(</span><span class="no">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">fls</span><span class="o">).</span><span class="w">
@@ -31,14 +40,17 @@
   </span><span class="no">empty</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="o">(</span><span class="no">Arrow</span><span class="w"> </span><span class="no">T1</span><span class="w"> </span><span class="no">T2</span><span class="o">)</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">value</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="p">∃</span><span class="no">x</span><span class="w"> </span><span class="no">u</span><span class="o">,</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">abs</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">T1</span><span class="w"> </span><span class="no">u</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="progress">Progress</h2>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">progress</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">progress</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
   </span><span class="no">empty</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">value</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∨</span><span class="w"> </span><span class="p">∃</span><span class="no">t'</span><span class="o">,</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="no">t'</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>类似 <code class="highlighter-rouge">Types</code> 章节的 <code class="highlighter-rouge">progress</code> 和 PLT 中的 proof.</p>
 
@@ -75,14 +87,37 @@
 
 <p>在 PLT/TAPL 中，我们将 “free variables of an term” 定义为一个集合 <code class="highlighter-rouge">FV(t)</code>. (集合是一种 computational 的概念)</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    FV(x) = {x}
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>    FV(x) = {x}
 FV(λx.t1) = FV(t1) ∪ FV(t2)
 FV(t1 t2) = FV(t1) \ {x} 
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>在这里，我们则将 “appears_free in” 定义为 var <code class="highlighter-rouge">x</code> 与 term <code class="highlighter-rouge">t</code> 上的二元关系: (读作 judgement 即可)</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">appears_free_in</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">string</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">appears_free_in</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">string</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">afi_var</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">x</span><span class="o">,</span><span class="w">
       </span><span class="no">appears_free_in</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="o">(</span><span class="no">var</span><span class="w"> </span><span class="no">x</span><span class="o">)</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">afi_app1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">x</span><span class="w"> </span><span class="no">t1</span><span class="w"> </span><span class="no">t2</span><span class="o">,</span><span class="w">
@@ -102,7 +137,7 @@ FV(t1 t2) = FV(t1) \ {x}
 
 </span><span class="c">(** a term with no free vars. 等价于 ¬(∃x,  appears_free_in x t). **)</span><span class="w"> 
 </span><span class="k">Definition</span><span class="w"> </span><span class="no">closed</span><span class="w"> </span><span class="o">(</span><span class="no">t</span><span class="p">:</span><span class="no">tm</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">           </span><span class="p">∀</span><span class="no">x</span><span class="o">,</span><span class="w"> </span><span class="p">¬</span><span class="no">appears_free_in</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">t</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p>An <em>open term</em> is one that <em>may</em> contain free variables. <br />
@@ -118,37 +153,52 @@ closed 是 open 的子集…这样定义吗（</p>
 
 <p>首先我们需要一个「free var 都是 well-typed 」的 lemma</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">free_in_context</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">x</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="no">Gamma</span><span class="o">,</span><span class="w">   </span><span class="c">(** 名字有一点 misleading，意思是 "free vars is in context" 而不是 "var is free in context"... **)</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">Lemma</span><span class="w"> </span><span class="no">free_in_context</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">x</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="no">Gamma</span><span class="o">,</span><span class="w">   </span><span class="c">(** 名字有一点 misleading，意思是 "free vars is in context" 而不是 "var is free in context"... **)</span><span class="w">
    </span><span class="no">appears_free_in</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">→</span><span class="w">
    </span><span class="no">Gamma</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="p">→</span><span class="w">
    </span><span class="p">∃</span><span class="no">T'</span><span class="o">,</span><span class="w"> </span><span class="no">Gamma</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Some</span><span class="w"> </span><span class="no">T'</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>由此我们可以推论 所有在 empty context 下 well typed 的 term 都是 closed 得：</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Corollary</span><span class="w"> </span><span class="no">typable_empty__closed</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">Corollary</span><span class="w"> </span><span class="no">typable_empty__closed</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
     </span><span class="no">empty</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="p">→</span><span class="w">
     </span><span class="no">closed</span><span class="w"> </span><span class="no">t</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="context-invariance-上下文的一些不变式">Context Invariance 上下文的一些「不变式」</h3>
 
 <p>PLT 的 Weaking 和 Exchanging 其实就对应了 Gamma 作为 <code class="highlighter-rouge">partial_map</code> 的 <code class="highlighter-rouge">neq</code> 和 <code class="highlighter-rouge">permute</code>
 这里，我们直接进一步地证明 「term 的 well-typeness 在『free var 的值不变的 context 变化下』是 preserving 得」:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">context_invariance</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">Gamma</span><span class="w"> </span><span class="no">Gamma'</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">Lemma</span><span class="w"> </span><span class="no">context_invariance</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">Gamma</span><span class="w"> </span><span class="no">Gamma'</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
     </span><span class="no">Gamma</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="p">→</span><span class="w">
     </span><span class="o">(</span><span class="p">∀</span><span class="no">x</span><span class="o">,</span><span class="w"> </span><span class="no">appears_free_in</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">Gamma</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Gamma'</span><span class="w"> </span><span class="no">x</span><span class="o">)</span><span class="w"> </span><span class="p">→</span><span class="w">    </span><span class="c">(** &lt;-- 这句的意思是：对于 freevar，我们有其值不变。（如果没有括号就变成所有值都不变了……）**)</span><span class="w">
     </span><span class="no">Gamma'</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="substitution">Substitution!</h3>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">substitution_preserves_typing</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">Gamma</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">U</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">v</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">Lemma</span><span class="w"> </span><span class="no">substitution_preserves_typing</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">Gamma</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">U</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">v</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
   </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="p">⊢</span><span class="o">&gt;</span><span class="w"> </span><span class="no">U</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="no">Gamma</span><span class="o">)</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">empty</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">v</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">U</span><span class="w"> </span><span class="p">→</span><span class="w">              </span><span class="c">(** 这里我们其实 assume 被替换进来的项，即「参数」，是 closed 得。这是一个简化的版本 **)</span><span class="w">
   </span><span class="no">Gamma</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="o">[</span><span class="no">x</span><span class="p">:</span><span class="o">=</span><span class="no">v</span><span class="o">]</span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p>可以被看做一种交换律 (“commutation property”)
@@ -159,29 +209,50 @@ closed 是 open 的子集…这样定义吗（</p>
 
 <h3 id="finally-preservation">Finally, Preservation</h3>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">preservation</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">t</span><span class="w"> </span><span class="no">t'</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">preservation</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">t</span><span class="w"> </span><span class="no">t'</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
   </span><span class="no">empty</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">t</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="no">t'</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">empty</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t'</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="not-subject-expansion">Not subject expansion</h3>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">not_subject_expansion</span><span class="p">:</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">not_subject_expansion</span><span class="p">:</span><span class="w">
   </span><span class="o">~(</span><span class="kr">forall</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">t'</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="no">t'</span><span class="w"> </span><span class="o">/\</span><span class="w"> </span><span class="no">empty</span><span class="w"> </span><span class="o">|-</span><span class="w"> </span><span class="no">t'</span><span class="w"> </span><span class="err">\</span><span class="kr">in</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">empty</span><span class="w"> </span><span class="o">|-</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="err">\</span><span class="kr">in</span><span class="w"> </span><span class="no">T</span><span class="o">).</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(app (abs x (Arrow Bool Bool) tru) tru)  -- 考虑 term 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>(app (abs x (Arrow Bool Bool) tru) tru)  -- 考虑 term 
 
 (λx:Bool-&gt;Bool . tru) tru   --&gt;   tru    -- 可以 step
                     empty   |-   Bool    -- step 后 well-typed
 
 empty |-/-  (λx:Bool-&gt;Bool . tru) tru    -- 但是原 term 显然 ill-typed
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="type-soundness">Type Soundness</h2>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">(** stuck 即在不是 value 的时候无法 step **)</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="c">(** stuck 即在不是 value 的时候无法 step **)</span><span class="w">
 </span><span class="k">Definition</span><span class="w"> </span><span class="no">stuck</span><span class="w"> </span><span class="o">(</span><span class="no">t</span><span class="p">:</span><span class="no">tm</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">(</span><span class="no">normal_form</span><span class="w"> </span><span class="no">step</span><span class="o">)</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∧</span><span class="w"> </span><span class="p">¬</span><span class="no">value</span><span class="w"> </span><span class="no">t</span><span class="pi">.</span><span class="w">
 
@@ -190,7 +261,7 @@ empty |-/-  (λx:Bool-&gt;Bool . tru) tru    -- 但是原 term 显然 ill-typed
   </span><span class="no">empty</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">t</span><span class="w"> </span><span class="o">--&gt;*</span><span class="w"> </span><span class="no">t'</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="o">~(</span><span class="no">stuck</span><span class="w"> </span><span class="no">t'</span><span class="o">).</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="uniqueness-of-types">Uniqueness of Types</h2>
 
@@ -198,11 +269,15 @@ empty |-/-  (λx:Bool-&gt;Bool . tru) tru    -- 但是原 term 显然 ill-typed
   <p>这里的 Uniqueness 与 Right-unique / deterministic / functional 其实都是相同的内涵</p>
 </blockquote>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">unique_types</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">Gamma</span><span class="w"> </span><span class="no">e</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="no">T'</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">unique_types</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">Gamma</span><span class="w"> </span><span class="no">e</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="no">T'</span><span class="o">,</span><span class="w">
   </span><span class="no">Gamma</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">e</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">Gamma</span><span class="w"> </span><span class="p">⊢</span><span class="w"> </span><span class="no">e</span><span class="w"> </span><span class="p">∈</span><span class="w"> </span><span class="no">T'</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">T</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">T'</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="additional-exercises">Additional Exercises</h2>
 
@@ -212,7 +287,21 @@ empty |-/-  (λx:Bool-&gt;Bool . tru) tru    -- 但是原 term 显然 ill-typed
   <p>only <code class="highlighter-rouge">Nat</code>…这样就不用管 the interaction between <code class="highlighter-rouge">Bool</code> and <code class="highlighter-rouge">Nat</code></p>
 </blockquote>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">ty</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">ty</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">Arrow</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">ty</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">ty</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">ty</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">Nat</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">ty</span><span class="pi">.</span><span class="w">            </span><span class="c">(** &lt;-- the only concrete base type **)</span><span class="w">
 
@@ -226,7 +315,7 @@ empty |-/-  (λx:Bool-&gt;Bool . tru) tru    -- 但是原 term 显然 ill-typed
   </span><span class="o">|</span><span class="w"> </span><span class="no">prd</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">tm</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">mlt</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">tm</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">test0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">tm</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>更多拓展见下一章 <code class="highlighter-rouge">MoreStlc.v</code></p>
 

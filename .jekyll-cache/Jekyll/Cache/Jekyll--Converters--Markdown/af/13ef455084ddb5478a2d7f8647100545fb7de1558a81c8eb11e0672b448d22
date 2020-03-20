@@ -1,4 +1,4 @@
-I"~'<blockquote>
+I"6*<blockquote>
   <p>这篇文章转载自<a href="https://www.zhihu.com/question/20081359/answer/275107187">我在知乎上的回答</a></p>
 </blockquote>
 
@@ -14,16 +14,34 @@
 
 <p>我们假设存在这么一个「停机程序」，不管它是怎么实现的，但是它能够回答「停机问题」：它接受一个「程序」和一个「输入」，然后判断这个「程序」在这个「输入」下是否能给出结果：</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">is_halt</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">def</span> <span class="nf">is_halt</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
   <span class="c1"># 返回 True  如果 program(input) 会返回
 </span>  <span class="c1"># 返回 False 如果 program(input) 不返回
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>（在这里，我们通过把一个函数作为另一个函数的输入来描述一个「程序」作为另一个「程序」的「输入」，如果你不熟悉「头等函数」的概念，你可以把所有文中的函数对应为一个具备该函数的对象。）</p>
 
 <p>为了帮助大家理解这个「停机程序」的功能，我们举个使用它的例子：</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">halt</span> <span class="kn">import</span> <span class="n">is_halt</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="kn">from</span> <span class="nn">halt</span> <span class="kn">import</span> <span class="n">is_halt</span>
 
 <span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
   <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
@@ -38,13 +56,24 @@
 
 <span class="n">is_halt</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 返回 True
 </span><span class="n">is_halt</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 返回 False
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>是不是很棒？</p>
 
 <p>不过，如果这个「停机程序」真的存在，那么我就可以写出这么一个「hack 程序」：</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">halt</span> <span class="kn">import</span> <span class="n">is_halt</span>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="kn">from</span> <span class="nn">halt</span> <span class="kn">import</span> <span class="n">is_halt</span>
 
 <span class="k">def</span> <span class="nf">loop</span><span class="p">():</span>
   <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
@@ -55,14 +84,15 @@
     <span class="n">loop</span><span class="p">()</span>
   <span class="k">else</span><span class="p">:</span>
     <span class="k">return</span>
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>这个程序说，如果你 <code class="highlighter-rouge">is_halt</code> 对 <code class="highlighter-rouge">program(program)</code> 判停了，我就无限循环；如果你判它不停，我就立刻返回。</p>
 
 <p>那么，如果我们把「hack 程序」同时当做「程序」和「输入」喂给「停机程序」，会怎么样呢？</p>
 
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">is_halt</span><span class="p">(</span><span class="n">hack</span><span class="p">,</span> <span class="n">hack</span><span class="p">)</span>
-</code></pre></div></div>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">is_halt</span><span class="p">(</span><span class="n">hack</span><span class="p">,</span> <span class="n">hack</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>你会发现，如果「停机程序」认为 <code class="highlighter-rouge">hack(hack)</code> 会给出结果，即 <code class="highlighter-rouge">is_halt(hack, hack)</code>) 返回 <code class="highlighter-rouge">True</code>) ，那么实际上 <code class="highlighter-rouge">hack(hack)</code> 会进入无限循环。而如果「停机程序」认为 <code class="highlighter-rouge">hack(hack)</code> 不会给出结果，即 <code class="highlighter-rouge">is_halt(hack, hack)</code> 返回 ，那么实际上 <code class="highlighter-rouge">hack(hack)</code> 会立刻返回结果……</p>
 

@@ -1,4 +1,4 @@
-I"ç<p>Emacs tend to provide a good support for functional programming languages. Indeed, many FP language community exclusively use Emacs and give only first-party IDE supports to Emacs, such as Coq, Agda, Standard ML, Clojure, etc.</p>
+I",<p>Emacs tend to provide a good support for functional programming languages. Indeed, many FP language community exclusively use Emacs and give only first-party IDE supports to Emacs, such as Coq, Agda, Standard ML, Clojure, etc.</p>
 
 <p>For the purpose of programming Coq with Proof General, I started to try with Emacs. I quickly found Spacemacs a good alternatives for me‚Ä¶someone had get used to Vim keybindings and want to get some thing useful ASAP w/o configuring a long list as my <code class="highlighter-rouge">.vimrc</code>.</p>
 
@@ -24,8 +24,9 @@
 
 <p>I even mappped <code class="highlighter-rouge">:D</code> into split-then-terminal to make the experience on par ;)</p>
 
-<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>command<span class="p">!</span> <span class="p">-</span>nargs<span class="p">=</span>* D  <span class="k">belowright</span> split <span class="p">|</span> terminal <span class="p">&lt;</span>args<span class="p">&gt;</span>
-</code></pre></div></div>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>command<span class="p">!</span> <span class="p">-</span>nargs<span class="p">=</span>* D  <span class="k">belowright</span> split <span class="p">|</span> terminal <span class="p">&lt;</span>args<span class="p">&gt;</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>Anyways, Spacemacs does provide a <code class="highlighter-rouge">:shell</code> that naturally split a window below for terminal. The experience is not very good though.</p>
 

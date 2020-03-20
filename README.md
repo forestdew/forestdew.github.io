@@ -1,486 +1,378 @@
-# Type on Strap 
+Hux Blog
+========
 
-[![Build Status](https://travis-ci.org/sylhare/Type-on-Strap.svg?branch=master)](https://travis-ci.org/sylhare/Type-on-Strap)
-[![Gem Version](https://badge.fury.io/rb/type-on-strap.svg)](https://badge.fury.io/rb/type-on-strap)
-[![Docker Pulls](https://img.shields.io/docker/pulls/sylhare/type-on-strap)](https://hub.docker.com/repository/docker/sylhare/type-on-strap)
+### [View Live Hux Blog &rarr;](https://huangxuan.me)  
 
-A free and open-source [Jekyll](https://jekyllrb.com) theme. Based on Rohan Chandra [type-theme](https://github.com/rohanchandra/type-theme) with a few new features:
+![](http://huangxuan.me/img/blog-desktop.jpg)
 
-* Responsive design
-* Portfolio page for your projects
-* Tags compatibility
-* Bootstrap : [Get Bootstrap](http://getbootstrap.com/)
-* Search feature : [Simple-Jekyll-Search](https://github.com/christian-fei/Simple-Jekyll-Search)
-* Math Rendering : [KateX](https://github.com/Khan/KaTeX)
-* Nice fonts : [Font Awesome](https://fontawesome.com/), [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro), [Pacifico](https://fonts.google.com/specimen/Pacifico?selection.family=Pacifico) 
-* Seo Tags : [Jekyll-seo-tag](https://github.com/jekyll/jekyll-seo-tag)
-* Syntax Highlighting: Easily customisable [Base16](https://github.com/chriskempson/base16)
-* Free of rights images from [pexels](https://www.pexels.com/)
 
-> [Demo Site](https://sylhare.github.io/Type-on-Strap/)
- 
-[![Default Type on Strap blog](https://github.com/Sylhare/Type-on-Strap/blob/master/screenshot.png?raw=true)](https://sylhare.github.io/Type-on-Strap/)
+Boilerplate (beta)
+------------------
 
-## Table of Contents
+**Bolierplate has been serveral verisons outdated. Helps wanted for updating it on par with the main repo.**
 
-  - [Usage](#usage)
-  - [Structure](#structure)
-  - [Configure Type on Strap](#configure-type-on-strap)
-  - [Other Layouts](#other-layouts)
-  - [Feature pages](#feature-pages)
-  - [Advanced](#advanced)
-  - [License](#license)
+Want to clone a boilerplate instead of my buzz blog? Here comes this!  
 
-## Usage
-
-### As a ruby gem
-
-Check out this tutorial: [Use as Ruby Gem](https://github.com/Sylhare/Type-on-Strap#use-as-ruby-gem)
-
-### As a github page
-
-1. Fork and clone the [Type on Strap repo](https://github.com/sylhare/Type-On-Strap): `git clone https://github.com/Sylhare/Type-on-Strap.git`
-2. Install [Jekyll](https://jekyllrb.com/docs/installation/): `gem install jekyll`, check [#1](https://github.com/Sylhare/Type-on-Strap/issues/1) if you have a problem.
-3. Install the theme's dependencies: `bundle install`
-4. Customize the theme
-	- Github Page: [update `_config.yml`](https://github.com/Sylhare/Type-on-Strap#site-configuration)
-5. Run the Jekyll server: `bundle exec jekyll serve`
-
-## Structure
-
-Here are the main files of the template
-
-```bash
-jekyll-theme-basically-basic
-├── _includes	               # theme includes
-├── _layouts                   # theme layouts (see below for details)
-├── _portfolio	               # collection of article to be populated in the portfolio page
-├── _posts                     # Blog posts
-├── _sass                      # Sass partials 
-├── assets
-|  ├── js	               # theme javascript, Katex, jquery, bootstrap, jekyll search, 
-|  ├── css                     # isolated Bootstrap, font-awesome, katex and main css
-|  ├── fonts		       # Font-Awesome, and other fonts
-|  └── img		       # Images used for the template
-├── pages
-|   ├── 404.md		       # To be displayed when url is wrong
-|   ├── about.md               # About example page
-|   ├── gallery.md             # Gallery page for your photos
-|   ├── portfolio.md	       # Portfolio page for your projects
-|   ├── search.html	       # Search page
-|   └── tags.md                # The tag page
-├── _config.yml                # sample configuration
-└── index.html                 # sample home page (blog page paginated)
 ```
-	
-## Configure Type on Strap
+$ git clone git@github.com:Huxpro/huxblog-boilerplate.git
+```
 
-Open `_config.yml` in a text editor to change most of the blog's settings.
-
-If a variable in this document is marked as "optional", disable the feature by removing all text from the variable. 
+**[View Boilerplate Here &rarr;](http://huangxuan.me/huxblog-boilerplate/)**
 
 
-### Site configuration
-Configure Jekyll as your own blog or with a subpath in in `_config.yml`:
+Porting 
+--------
 
-Jekyll website *without* a subpath (such as a GitHub Pages website for a given username):
+- [**Hexo**](https://github.com/Kaijun/hexo-theme-huxblog) by @kaijun
+- [**React-SSR**](https://github.com/LucasIcarus/huxpro.github.io/tree/ssr) by @LucasIcarus
+
+
+Translation
+-----------
+
+ - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese (Simplified)**: 感谢 [@BrucZhaoR](https://github.com/BruceZhaoR) 的 [中文翻译 &rarr;](https://github.com/Huxpro/huxpro.github.io/blob/master/README.zh.md)
+
+
+Releases
+--------
+
+#### V1.8.2
+
+- TODO: `multilingual` could be more automative via configurations and convention.
+- Drop the entire `portfolio` page until a big rewrite of a better `project` page.
+
+#### V1.8.1
+
+- Improve multi-lingual implementation, see `about.html` or `_posts/2017-07-12-upgrading-eleme-to-pwa.markdown` for a example of uses.
+
+#### V1.8
+
+- Brand new [Archive](https://huangxuan.me/archive/) page! It combines previous Archive and Tag page and it's backward-cmpatible.
+Shout out to [@kitian616/jekyll-TeXt-theme](https://github.com/kitian616/jekyll-TeXt-theme) of bringing this idea. 
+- Improve engineering by extracting duplicated liquid templates into reuseable includes. This was proposed in #74 by @Kaijun but postponed for entirely 2.5 years! I wasn't able to merge his PR directly because of long-time divegence but the credit is belonging to @Kaijun.
+- Improved code block. Long-wanted line number are supported out of the box (thanks for @SmilingParadise's help from Sina Weibo), the default theme is updated to Atom One Dark as well (checkout FQA for how to change to your farovite theme)
+- MathJax support by @Voleking in #80. I choose to use the SVG renderer though. See [Mathjax, kramdown and Octopress](https://www.lucypark.kr/blog/2013/02/25/mathjax-kramdown-and-octopress/) for writing and escaping details.
+- Open Graph Protocol support by @Android-KitKat in #253
+- `header-img-credit` and `header-img-credit-href`
+- `nav-style: invert` and `header-style: text`
+
+#### V1.7
+
+- PWA / Service Worker support.
+
+#### v1.6
+
+- Change cdn to cdnjs for better HTTPS support
+
+#### V1.5.2
+
+- Feeling annoyed to delete my blog post after clone or pull? Try **Boilerplate (Beta)** to help you get started quickly and easily merge update.
+- `-apple-system` is added in font rule, which display beautiful new font **San Francisco** in iOS 9 by default.
+- Fixed [issue#15](https://github.com/Huxpro/huxpro.github.io/issues/15) about code wrap.
+
+#### V1.5.1
+
+- **[Comment](#comment)** support [**Disqus**](http://disqus.com) officially, thanks to @rpsh.
+
+#### V1.5
+
+- **[Comment](#comment)** and **[Analytics](#analytics)** is configurable now! We also add **Google Analytics support** and drop tencents. Both documents is updated.
+
+#### V1.4
+
+- **[Featured Tags](#featured-tags)** is now independent of [SideBar](#sidebar). Both documents is updated.
+- New **[SEO Title](#seo-title)** for SEO usage which is differ from the site title
+
+#### V1.3.1
+
+- Support **PingFang (苹方)**, the new Chinese font presented by [OS X El Capitan](http://www.apple.com/cn/osx/whats-new/)
+
+
+#### V1.3
+
+- Big Improvement to the **Navigation Menu** *(especially in Android)*:  Dropping the old, stuttering, low-performance [Bootstrap collapse.js](http://getbootstrap.com/javascript/#collapse),  replaced with an own wrote, [jank free](http://jankfree.org/) navbar menu in a pretty high-performance implementation of [Google Material Design](https://www.google.com/design/spec/material-design/introduction.html).
+
+<img src="http://huangxuan.me/img/blog-md-navbar.gif" width="320" />
+
+
+#### V1.2
+
+- Brand new **[Keynote Layout](#keynote-layout)** is provided for easily posting beautiful HTML presentations you have created with this blog
+
+
+#### V1.1
+
+- We now support a clean and gorgeous **[SideBar](#sidebar)** for displaying more info
+- **[Friends](#friends)** is also added as a common feature of blog help you do SEO
+
+#### V1.0
+
+- Full-feature **Tag** support
+- **Mobile first** user experience optimization
+- **Typographic optimization** for Chinese Fonts
+- **Network optimizaition** for China, dropping Google webfont, using local CDN
+- Using [Github Flavored Markdown](https://help.github.com/articles/github-flavored-markdown/)
+- Using Baidu, Tencent/QQ analytics
+- Using [DuoShuo](http://duoshuo.com/) as the Disqus-like third party discussion system
+
+
+Support
+-------
+
+- **Feel free to fork**. 
+- I'll appreciate it if you keep the OG author and github link at footer.
+- **Star** the repo if you like it.
+- **Open issues** so people could help you.
+
+
+Document
+--------
+
+* Get Started
+	* [Environment](#environment)
+	* [Get Started](#get-started)
+	* [Write Posts](#write-posts)
+* Components
+	* [SideBar](#sidebar)
+	* [Mini About Me](#mini-about-me)
+	* [Featured Tags](#featured-tags)
+	* [Friends](#friends)
+	* [Keynote Layout](#keynote-layout)
+* Comment & Analysis
+	* [Comment](#comment)
+	* [Analytics](#analytics)
+* Advanced
+	* [Build from source](#build-from-source)
+	* [Header Image](#header-image)
+	* [SEO Title](#seo-title)
+	* [Page Build Warning](#page-build-warning)
+* FAQ
+
+### Get Started
+
+If you have `npm` and `jekyll` installed, simply run `npm run start` from CLI and preview the themes at `localhost:4000` in your browser. It's watched and live-reloaded.
+
+
+### Start to customize
+
+You can easily customize the blog by modifying `_config.yml`:
 
 ```yml
-baseurl: ""
-url: "https://username.github.io"
+# Site settings
+title: Hux Blog             # title of your website
+SEOTitle: Hux Blog          # check out docs for more detail
+description: "Cool Blog"    # ...
+
+# SNS settings      
+github_username: huxpro     # modify this account to yours
+weibo_username: huxpro      # the footer woule be auto-updated.
+
+# Build settings
+paginate: 10                # nums of posts in one page
 ```
 
-Jekyll website *with* subpath (like the Type on Strap [demo](https://sylhare.github.io/Type-on-Strap/) page):
-
-```yml
-baseurl: "/sub-directory"
-url: "https://username.github.io/"
-```
-
-Please configure this  before using the theme.
-
-### Meta and Branding
-
-Meta variables hold basic information about your Jekyll site which will be used throughout the site 
-and as meta properties for search engines, browsers, and the site's RSS feed.
-
-Change these variables in `_config.yml`:
-
-```yml
-title: My Jekyll Blog                 # Name of website
-avatar: assets/img/triangle.png       # Path of avatar image, to be displayed in the theme's header
-description: My blog posts            # Short description, primarily used by search engines
-favicon: assets/favicon.ico           # Icon displayed in the tab
-```
-
-### Main configuration
-
-#### Footer and Header's text
-
-Customize your site header/footer with these variables in `_config.yml`:
-
-```yml
-header_text: Welcome to my Jekyll blog
-header_feature_image: assets/img/sample3.png
-footer_text: Copyright 2017
-```
-
-If you don't want anything, replace the value by `" "`.
-
-#### Localisation string
-
-Localization string is a way to quickly change the template language for text like *Next Post* or *Follow on*, ...
-You can find all the properties in `_data/language.yml`.
-
-By default it is in english, but you can easily add your own language.
-
-### Google Analytics
-
-To enable Google Analytics, add your [tracking ID](https://support.google.com/analytics/answer/1032385) 
-to `_config.yml` like so:
-
-```yml
-google_analytics: UA-NNNNNNNN-N
-```
-
-### Comments (via Disqus)
-
-Optionally, if you have a [Disqus](https://disqus.com/) account, you can show a 
-comments section below each post.
-
-To enable Disqus comments, add your [Disqus shortname](https://help.disqus.com/customer/portal/articles/466208) 
-to your project's `_config.yml` file:
-
-```yml
-disqus_shortname: my_disqus_shortname
-```
-
-### Math typesetting
-
-When KateX is set in `_config.yml`:
-
-```yml
-katex: true # to Enable it
-```
-
-You can then wrap math expressions with `$$` signs in your posts and make sure you have set the `katex` variable 
-in `_config.yml` to `true` for math typesetting.
-
-For inline math typesetting, type your math expression on the *same line* as your content. For example:
-
-```latex
-Type math within a sentence $$2x^2 + x + c$$ to display inline
-```
-
-For display math typesetting, type your math expression on a *new line*. For example:
-
-```latex
-$$
-  \bar{y} = {1 \over n} \sum_{i = 1}^{n}y_i
-$$
-```
-
-### Social icons
-
-In `_data/social.yml` you can customize the social icons from other wbesite you wish to display in the blog.
-The site icons come from [Font Awesome](https://fontawesome.com/).
-
-#### Share in article
-
-The share icons are the one at the bottom of the blog page if enabled, 
-to share the article on those platform.
+For more options, please check out [Jekyll - Official Site](http://jekyllrb.com/). 
+Most of them are very descriptive so feel brave to dive into code directly as well. 
 
 
-#### Footer
+### Writing Posts
 
-Display  in the footer. 
-All icon variables should be your username enclosed in quotes (e.g. "username") in `_config.yml`, 
-except for the following variables:
+Posts are simply Markdown files in the `_posts/`. 
 
-```yml
-rss: true                                                   
-email_address: type@example.com
-linkedin: https://www.linkedin.com/in/FirstLast
-stack_exchange: https://stackexchangecom/users/0000/first-last
-stack_overflow: https://stackoverflow.com/users/0000/first-last
-youtube: UCqECaJ8Gagnn7YCbPEzWH6g  # Youtube token of your channel in the url 
-```
-
-### Customizing Posts
-
-When writing a post, be sure in jekyll to:
- - Put it in the `_posts` folder
- - Name it with the date first like `2019-08-21-This-is-my-blog-post.md`
-
-#### Layout: Post
-
-This are the basic features you can use with the  `post` layout.
+Metadata of posts are written in **front-matter**. A example post could start with:
 
 ```yml
 ---
-layout: post
-title: Hello World                                # Title of the page
-hide_title: true                                  # Hide the title when displaying the post, but shown in lists of posts
-feature-img: "assets/img/sample.png"              # Add a feature-image to the post
-thumbnail: "assets/img/thumbnail/sample-th.png"   # Add a thumbnail image on blog view
-color: rgb(80,140,22)                             # Add the specified color as feature image, and change link colors in post
-bootstrap: true                                   # Add bootstrap to the page
-tags: [sample, markdown, html]
+layout:     post
+title:      "Hello 2015"
+subtitle:   "Hello World, Hello Blog"
+date:       2015-01-29 12:00:00
+author:     "Hux"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - Life
 ---
 ```
 
-With `thumbnail`, you can add a smaller image than the `feature-img`. 
-If you don't have a thumbnail you can still use the same image as the feature one.
+### SideBar
 
-The background used when `color` is set comes from `lineart.png` from [xukimseven](https://github.com/xukimseven) 
-you can edit it in the config file (`_config.yml > color_image`). If you want another one, put it in `/assets/img` as well. 
+![](http://huangxuan.me/img/blog-sidebar.jpg)
 
-The **bootstrap** is not mandatory and is only useful if you want to add bootstrapped content in your page. 
-It will respect the page and theme layout, mind the padding on the sides.
-
-#### Post excerpt
-
-The [excerpt](https://jekyllrb.com/docs/posts/#post-excerpts) are the first lines of an article that is display on the blog page. 
-The length of the excerpt has a default of around `250` characters or can be manually set in the post using:
-
-in `conflig.yml`:
+**SideBar** provides possible modules to show off more personal information.
 
 ```yml
-excerpt: true
+# Sidebar settings
+sidebar: true   # default true
+sidebar-about-description: "your description here"
+sidebar-avatar: /img/avatar-hux.jpg     # use absolute URL.
 ```
 
-Then in your post, add the `excerpt separator`:
+Modules *[Featured Tags](#featured-tags)*, *[Mini About Me](#mini-about-me)* and *[Friends](#friends)* are turned on by default and you can add your own. The sidebar is naturally responsive, i.e. be pushed to bottom in a smaller screen (`<= 992px`, according to [Bootstarp Grid System](http://getbootstrap.com/css/#grid))  
+
+
+### Mini About Me
+
+**Mini-About-Me** displays your avatar, description and all SNS buttons if  `sidebar-avatar` and `sidebar-about-description` variables are set. 
+
+It would be hidden in a smaller screen when the entire sidebar are pushed to bottom. Since there is already SNS portion there in the footer.
+
+### Featured Tags
+
+**Featured-Tags** is similar to any cool tag features in website like [Medium](http://medium.com).
+Started from V1.4, this module can be used even when sidebar is off and displayed always in the bottom. 
 
 ```yml
----
-layout: post
-title: Sample Page
-excerpt_separator: <!--more-->
----
-
-some text in the excerpt
-<!--more-->
-... rest of the text not shown in the excerpt ...
+# Featured Tags
+featured-tags: true  
+featured-condition-size: 1     # A tag will be featured if the size of it is more than this condition value
 ```
 
-The html is stripped out of the excerpt so it only display text.
+The only thing need to be paid attention to is `featured-condition-size`, which indicate a criteria that tags need to have to be able to "featured". Internally, a condition `{% if tag[1].size > {{site.featured-condition-size}} %}` are made.
 
-## Other Layouts
-Please refer to the [Jekyll docs for writing posts](https://jekyllrb.com/docs/posts/). 
-Non-standard features are documented below.
+### Friends
 
-### Layout: Page
+Friends is a common feature of any blog. It helps with SEO if you have a bi-directional hyperlinks with your friends sites.
+This module can live when sidebar is off as well.
 
-The page layout have a bit more features explained here.
+Friends information is configured as a JSON string in `_config.yml`
 
 ```yml
----
-layout: page
-title: "About" 
-subtitle: "This is a subtitle"   
-feature-img: "assets/img/sample.png" 
-permalink: /about.html               # Set a permalink your your page
-hide: true                           # Prevent the page title to appear in the navbar
-icon: "fa-search"                    # Will Display only the fontawesome icon (here: fa-search) and not the title
-tags: [sample, markdown, html]
----
+# Friends
+friends: [
+    {
+        title: "Foo Blog",
+        href: "http://foo.github.io/"
+    },
+    {
+        title: "Bar Blog",
+        href: "http://bar.github.io"
+    }
+]
 ```
 
-The hide only hides your page from the navigation bar, it is however still generated and can be access through its link. 
 
-### Layout: Default
+### Keynote Layout
 
-This layout includes the head, navigation bar and footer around your content.
+![](http://huangxuan.me/img/blog-keynote.jpg)
 
-## Feature pages
+There is a increased trend to use Open Web technology for keynotes and presentations via Reveal.js, Impress.js, Slides, Prezi etc. I consider a modern blog should have first-class support to embed these HTML based presentation so **Keynote layout** are made.
 
-All feature pages besides the "home" one are stored in the `page` folder, 
-they will appear in the navigation bar unless you set `Hide: true` in the front matter. 
-
-Here are the documentation for the other feature pages that can be added through `_config.yml`.
-
-### Home
-
-This page is used as the home page of the template (in the `index.html`). It displays the list of articles in `_posts`.
-You can use this layout in another page (adding a title to it will make it appear in the navigation bar).
-
-The recommended width and height for the home picture is width:`2484px;` and height:`1280px` 
-which are the dimensions of the actual picture for it to be rolling down as you scroll the page.
-
-If your posts are not displaying ensure that you have added the line `paginate: 5` to `_config.yml`.
-
-### Portfolio
-
-Portfolio is a feature page that will take all the markdown/html files in the `_portfolio` folder to create a 3-columns image portfolio matrix.
-
-To use the portfolio, simply create a `portfolio.md` with this information inside:
-```yml
---- 
-layout: page
-title : Portfolio 
----
-
-{% include portfolio.html %}
-```
-
-#### Portofolio posts
-
-You can format the portfolio posts in the `_portfolio` folder using the `post layout`. Here are little explaination on some of the possible feature you can use and what they will do.
-
-If you decide to use a date, please be sure to use one that can be parsed such as `yyyy-mm-dd`. You can see more format example on the demo posts that are available for the theme:
+To use, in the **front-matter**:
 
 ```yml
 ---
-layout: post
-title: Circus				       # Title of the portfolio post
-feature-img: "assets/img/portfolio/cake.png"   # Will display the image in the post
-img: "assets/img/portfolio/cake.png"           # Will display the image in the portfolio page
-date: 2019-07-25		 	       # Not mandatory, however needs to be in date format to display the date
+layout:     keynote
+iframe:     "http://huangxuan.me/js-module-7day/"
 ---
 ```
 
-#### Portfolio in gem
+The `iframe` element will be automatically resized to adapt different form factors and device orientation. 
+Because most of the keynote framework prevent the browser default scroll behavior. A bottom-padding is set to help user and imply user that more content could be presented below.
 
-Make sure your `_config.yml` contains the following if you are using the theme as a gem:
+
+### Comment
+
+Currently, [Disqus](http://disqus.com) <del> and [Duoshuo](http://duoshuo.com)</del> are supported as third party discussion system.
+
+First of all, you need to sign up and get your own account. **Repeat, DO NOT use mine!** (I have set Trusted Domains) It is deathly simple to sign up and you will get the full power of management system. Please give it a try!
+
+Second, from V1.5, you can easily complete your comment configuration by just adding your **short name** into `_config.yml`:
 
 ```yml
+duoshuo_username: _your_duoshuo_short_name_
+# OR
+disqus_username: _your_disqus_short_name_
+```
 
-# PORTFOLIO
-collections:
-  portfolio:
-    output: true
-    permalink: /:collection/:name
-```    
+**To the old version user**, it's better that you pull the new version, otherwise you have to replace code in `post.html`, `keynote.html` and `about.html` on your own.
 
-This creates the collection for Jekyll so it can find and display your portfolio posts.
+<del>Furthermore, Duoshuo support Sharing. if you only wanna use Duoshuo comment without sharing, you can set `duoshuo_share: false`. </del>
 
-### Gallery
 
-You can create a gallery using [Masonry JS](https://masonry.desandro.com/) which will placing the pictures in optimal position 
-based on available vertical space. 
-You need to specify the `gallery_path` which will be used to find the pictures to render. 
-It will take all of the picture under that directory. Then use the `include` to add it in your page. 
+
+### Analytics
+
+From V1.5, Google Analytics and Baidu Tongji are supported with a simple config away:
 
 ```yml
----
-layout: page
-title: Gallery
-gallery: "assets/img/pexels"
----
+# Baidu Analytics
+ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
 
-{% include gallery.html gallery_path=page.gallery %}
+# Google Analytics
+ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+ga_domain: huangxuan.me
 ```
 
+Just checkout the code offered by Google/Baidu, and copy paste here, all the rest is already done for you.
 
-### Search
+(Google might ask for meta tag `google-site-verification`)
 
-The search feature is based on [Simple-Jekyll-search](https://github.com/christian-fei/Simple-Jekyll-Search) 
-there is a `search.json` file that will create a list of all of the site posts, pages and portfolios. 
 
-Then there's a `search.js` displaying the formatted results entered in the `search.html` page.
+### Build from source
 
-The search page can be hidden with the `hide` option. You can remove the icon by removing `icon`:
+More customization could be made by changing the source code. [Grunt](gruntjs.com) were used for building this blog. (Thanks to Clean Blog.)
+
+There are numbers of tasks includes minifing JavaScript, compiling `.less` to `.css`, adding banners to keep the Apache 2.0 license intact, watching for changes, etc. Running `grunt ` to build files and `grunt watch` for watch-build.
+
+Critical code are located in `_include/` and `_layouts/`. Most of them are simply Jekyll [Liquid](https://github.com/Shopify/liquid/wiki) template.
+
+
+### Header Image
+
+Change header images of any pages or any posts is pretty easy as mentioned above. But, thanks to [issue #6 (in Chinese)](https://github.com/Huxpro/huxpro.github.io/issues/6) asked, **how to make it looks great?**
+
+**Well...it is actually a design issue**, not a coding stuff. It is better that you have basic design knowledge, but not is ok, let me told you how to make it well-designed:
+
+Seeing the title text above image is **white**, the image should be **dark** to emphasize the contract. so we can easily add a **black overlay with fews of opacity**, which is depends on the brightness of the original images you used. you can process it in Photoshop, Sketch etc.
+
+In technical views, it can be done with CSS. However, the opacity of the black overlay is really hard to assigned, **every image has different brightness so the  degree it should be adjusted is different so it is impossible to hard code it.**
+
+
+### SEO Title
+
+Before V1.4, site setting `title` is not only used for displayed in Home Page and Navbar, but also used to generate the `<title>` in HTML.
+It's possible that you want the two things different. For me, my site-title is **“Hux Blog”** but I want the title shows in search engine is **“黄玄的博客 | Hux Blog”** which is multi-language.
+
+So, the SEO Title is introduced to solve this problem, you can set `SEOTitle` different from `title`, and it would be only used to generate HTML `<title>` and setting DuoShuo Sharing.
+
+### Page Build Warning
+
+There are many possible reasons to cause a "Page Build Warning" email or similar error.
+
+One of these is that github changes its build environment.
+
+> You are attempting to use the 'pygments' highlighter, which is currently unsupported on GitHub Pages. Your site will use 'rouge' for highlighting instead. To suppress this warning, change the 'highlighter' value to 'rouge' in your '_config.yml'.
+
+So, just edit `_config.yml`, find `highlighter: pygments`, change it to `highlighter: rouge` and the warning will be gone.
+
+For other circumstances, check out existing issues or create a new one!
+
+
+
+FAQ
+---
+
+### How can I customize the theme of code block?
+
+This theme uses the default code syntax highlighter of jekyll, "rouge, which is compatible with Pygments theme so just pick any pygments theme css (e.g. from [here](http://jwarby.github.io/jekyll-pygments-themes/languages/javascript.html) and replace the content of `highlight.less`.
+
+### cannot load such file -- jekyll-paginate
+
+Executing this command to install this plugin:
 
 ```yml
----
-layout: search
-title: Search
-icon: "search"
----
+$ gem install jekyll-paginate 
 ```
 
-### Tags
+This blog started in Jekyll 2 time when `jekyll-paginate` is standard. With Jekyll 3, it's a plugin we included in `_config.yml`.
 
-Tags should be placed between `[]` in your post metadata. Separate each tag with a comma. 
-Tags are recommended for posts and portfolio items.
 
-For example:
 
-```yml
----
-layout: post
-title: Markdown and HTML
-tags: [sample, markdown, html]
----
-```
+License
+-------
 
-> Tags are case sensitive `Tag_nAme` ≠ `tag_name`
+Apache License 2.0.
+Copyright (c) 2015-2020 Huxpro
 
-All the tags will be listed in `tags.html` with a link toward the pages or posts.
-The Tag page can be hidden with the `hide` option. You can remove the icon by removing `icon` (like for the search page).
-
-## Advanced
-
-### Liquid tags
-
-Jekyll works with [liquid](https://shopify.github.io/liquid/) tags usually represented by:
-
-```
-{{ liquid.tag | filter }}
-```
-
-These are useful to render your jekyll files. 
-You can learn more about them on [shopify's doc](https://help.shopify.com/themes/liquid/basics)
-
-### Minimizing and optimizing: css, js and images
-
-Before you need to have `node` and `npm` installed:
-- Windows: https://nodejs.org/
-- Ubuntu/Debian: `apt-get install nodejs npm libgl1 libxi6`
-- Fedora (dnf) / RHEL/CentOS (yum): `dnf install node npm libglvnd-glx libXi`
-
-Then you need to install [`gulp-cli`](https://gulpjs.com/) and its dependencies:
-```shell
-cd assets/
-sudo npm install gulp-cli -g
-npm install
-```
-
-**Now, whenever you want to minify and optimize, run:**
-```shell
-cd assets/
-gulp default
-# tip: run a git status to see the changes
-git status
-```
-
-### Use as Ruby Gem
-
-You can use Type-on-strap as a [gem](https://rubygems.org/gems/type-on-strap). 
-
-Ruby Gem Method
-Add this line to your Jekyll site's Gemfile (or create one):
-
-```ruby
-gem "type-on-strap"
-```
-Add this line to your Jekyll site's `_config.yml` file:
-
-```yml
-theme: type-on-strap
-```
-
-Then run Bundler to install the theme gem and dependencies:
-
-```bash
-bundle install
-```
-
-Then you can start adding content like:
-  - Add a `index.html` file
-  - Add the feature page you want. (ex: as it is already in `pages`)
-  - Add posts in `_posts` and `_portfolio` to be displayed
-
-### Remote Theme
-
-Now you can use any theme gem with github pages with [29/11/2017 Github Pages Broadcast](https://github.com/blog/2464-use-any-theme-with-github-pages).
-For that remove all `theme:` attributes from `_config.yml` and add instead:
-
-```yml
-remote_theme: sylhare/Type-on-Strap 
-```
-
-## License
-
-There are some fonts and component on this theme going under the MIT licence as well in this theme.
-[The MIT License (MIT)](https://raw.githubusercontent.com/Sylhare/Type-on-Strap/master/LICENSE)
+Hux Blog is derived from [Clean Blog Jekyll Theme (MIT License)](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll/)
+Copyright (c) 2013-2016 Blackrock Digital LLC.

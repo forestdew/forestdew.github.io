@@ -1,4 +1,4 @@
-I"�<h2 id="apply"><code class="highlighter-rouge">apply</code></h2>
+I"��<h2 id="apply"><code class="highlighter-rouge">apply</code></h2>
 
 <ul>
   <li><em>exactly</em> the same as some hypothesis</li>
@@ -7,7 +7,15 @@
 
 <p>It also works with <em>conditional</em> hypotheses:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">n</span><span class="o">,</span><span class="w"> </span><span class="no">m</span><span class="o">,</span><span class="w"> </span><span class="no">o</span><span class="o">,</span><span class="w"> </span><span class="no">p</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="no">n</span><span class="o">,</span><span class="w"> </span><span class="no">m</span><span class="o">,</span><span class="w"> </span><span class="no">o</span><span class="o">,</span><span class="w"> </span><span class="no">p</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w">
 </span><span class="no">eq1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="w">
 </span><span class="no">eq2</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="no">q</span><span class="w"> </span><span class="no">r</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">r</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="no">q</span><span class="p">;</span><span class="w"> </span><span class="no">o</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="no">r</span><span class="p">;</span><span class="w"> </span><span class="no">p</span><span class="o">]</span><span class="w">
 </span><span class="o">============================</span><span class="w">
@@ -15,20 +23,27 @@
 
 </span><span class="kp">apply</span><span class="w"> </span><span class="no">eq2</span><span class="pi">.</span><span class="w">
 </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>It works by working backwards. 
 It will try to <em>pattern match</em> the universally quantified <code class="highlighter-rouge">q r</code>. (i.e. universal var)
 We match the <em>conclusion</em> and generates the <em>hypothesis</em> as a <em>subgoal</em>.</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">trans_eq</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">X</span><span class="p">:</span><span class="kr">Type</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">X</span><span class="o">),</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">o</span><span class="pi">.</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">trans_eq</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">X</span><span class="p">:</span><span class="kr">Type</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">X</span><span class="o">),</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">o</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">o</span><span class="pi">.</span><span class="w">
 
 </span><span class="k">Example</span><span class="w"> </span><span class="no">trans_eq_example'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span><span class="w"> </span><span class="no">d</span><span class="w"> </span><span class="no">e</span><span class="w"> </span><span class="no">f</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">),</span><span class="w">
      </span><span class="o">[</span><span class="no">a</span><span class="p">;</span><span class="no">b</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="no">c</span><span class="p">;</span><span class="no">d</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="no">c</span><span class="p">;</span><span class="no">d</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="no">e</span><span class="p">;</span><span class="no">f</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="no">a</span><span class="p">;</span><span class="no">b</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="no">e</span><span class="p">;</span><span class="no">f</span><span class="o">].</span><span class="w">
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w"> 
   </span><span class="kp">intros</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span><span class="w"> </span><span class="no">d</span><span class="w"> </span><span class="no">e</span><span class="w"> </span><span class="no">f</span><span class="w"> </span><span class="no">eq1</span><span class="w"> </span><span class="no">eq2</span><span class="pi">.</span><span class="w">
   </span><span class="kp">apply</span><span class="w"> </span><span class="no">trans_eq</span><span class="pi">.</span><span class="w"> </span><span class="c">(* Error: Unable to find an instance for the variable m. *)</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>The <em>unification algo</em> won’t happy since:</p>
 <ul>
@@ -38,8 +53,9 @@ We match the <em>conclusion</em> and generates the <em>hypothesis</em> as a <em>
 
 <p>So we need to tell Coq explicitly which value should be picked for <code class="highlighter-rouge">m</code>:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kp">apply</span><span class="w"> </span><span class="no">trans_eq</span><span class="w"> </span><span class="kp">with</span><span class="w"> </span><span class="o">(</span><span class="no">m</span><span class="p">:</span><span class="o">=[</span><span class="no">c</span><span class="p">;</span><span class="no">d</span><span class="o">]).</span><span class="w">   </span><span class="c">(* &lt;- supplying extra info, [m:=] can be ommited *)</span><span class="w">
-</span></code></pre></div></div>
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="kp">apply</span><span class="w"> </span><span class="no">trans_eq</span><span class="w"> </span><span class="kp">with</span><span class="w"> </span><span class="o">(</span><span class="no">m</span><span class="p">:</span><span class="o">=[</span><span class="no">c</span><span class="p">;</span><span class="no">d</span><span class="o">]).</span><span class="w">   </span><span class="c">(* &lt;- supplying extra info, [m:=] can be ommited *)</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p>Prof Mtf: As a PL person, you should feel this is a little bit awkward since now function argument name must be remembered. (but it’s just local and should be able to do any alpha-conversion).
@@ -48,21 +64,29 @@ named argument is more like a record.</p>
 
 <p>In Coq Intensive 2 (2018), someone proposed the below which works:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Example</span><span class="w"> </span><span class="no">trans_eq_example''</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span><span class="w"> </span><span class="no">d</span><span class="w"> </span><span class="no">e</span><span class="w"> </span><span class="no">f</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="k">Example</span><span class="w"> </span><span class="no">trans_eq_example''</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span><span class="w"> </span><span class="no">d</span><span class="w"> </span><span class="no">e</span><span class="w"> </span><span class="no">f</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">),</span><span class="w">
   </span><span class="o">[</span><span class="no">a</span><span class="p">;</span><span class="no">b</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="no">c</span><span class="p">;</span><span class="no">d</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="no">c</span><span class="p">;</span><span class="no">d</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="no">e</span><span class="p">;</span><span class="no">f</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="o">[</span><span class="no">a</span><span class="p">;</span><span class="no">b</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="no">e</span><span class="p">;</span><span class="no">f</span><span class="o">].</span><span class="w"> 
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
   </span><span class="kp">intros</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="no">c</span><span class="w"> </span><span class="no">d</span><span class="w"> </span><span class="no">e</span><span class="w"> </span><span class="no">f</span><span class="pi">.</span><span class="w">
   </span><span class="kp">apply</span><span class="w"> </span><span class="no">trans_eq</span><span class="pi">.</span><span class="w">          </span><span class="c">(* Coq was able to match three at all at this time...hmm *)</span><span class="w">
 </span><span class="k">Qed</span><span class="pi">.</span><span class="w">
 
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="injection-and-discrinimate"><code class="highlighter-rouge">injection</code> and <code class="highlighter-rouge">discrinimate</code></h2>
 
 <h3 id="side-note-on-terminologys-of-function">Side Note on Terminologys of Function</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                     relation
-</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>                     relation
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p>function is defined as <em>a special kind of binary relation</em>. 
@@ -70,7 +94,25 @@ it requires <code class="highlighter-rouge">xRy1 ∧ xRy2 → y1 = y2</code>  ca
 and also <code class="highlighter-rouge">∀x ∈ X, ∃y ∈ Y s.t. xRy</code>   called “left-total”</p>
 </blockquote>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>                x       ↦      f(x)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre>                x       ↦      f(x)
               input     ↦     output
             argument    ↦     value
 
@@ -88,7 +130,7 @@ f⁻¹(B)={x ∈ X|f(x) ∈ B} ↦     B ⊆ Y
             when A = X  ↦       Y
                         ↦     range  
                            image of domain
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>Besides subset, the notation of <code class="highlighter-rouge">image</code> and <code class="highlighter-rouge">pre-image</code> can be applied to <em>element</em> as well.
 However, by definition:</p>
@@ -116,7 +158,16 @@ But in Type Theory, Category Theory, we usually consider the <em>domain</em> <co
 
 <h3 id="conclusion---the-road-from-relation-to-function">Conclusion - the road from Relation to Function</h3>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            bi-relation 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>            bi-relation 
                  | + right-unique 
           partial function
                  | + left-total   
@@ -125,7 +176,7 @@ But in Type Theory, Category Theory, we usually consider the <em>domain</em> <co
       injection     surjection
                \   /
              bijection
-</code></pre></div></div>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="original-notes-on-injective-surjective-bijective">Original notes on <a href="https://en.wikipedia.org/wiki/Function">Injective, surjective, Bijective</a></h3>
 
@@ -141,10 +192,13 @@ But in Type Theory, Category Theory, we usually consider the <em>domain</em> <co
 
 <p>Recall the definition of <code class="highlighter-rouge">nat</code>:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
 </span><span class="o">|</span><span class="w"> </span><span class="no">O</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w">
 </span><span class="o">|</span><span class="w"> </span><span class="no">S</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">nat</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>Besides there are two forms of <code class="highlighter-rouge">nat</code> (for <code class="highlighter-rouge">destruct</code> and <code class="highlighter-rouge">induction</code>), there are more facts:</p>
 
@@ -185,7 +239,17 @@ But in Type Theory, Category Theory, we usually consider the <em>domain</em> <co
 
 <p>from Coq Intensive (not sure why it’s not the case in book version).</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">S_injective_inv</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">S_injective_inv</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">),</span><span class="w">
   </span><span class="no">S</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">S</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="pi">.</span><span class="w">
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
   </span><span class="kp">intros</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w"> </span><span class="kp">inversion</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w"> </span><span class="ne">reflexivity</span><span class="pi">.</span><span class="w"> </span><span class="k">Qed</span><span class="pi">.</span><span class="w"> 
@@ -195,7 +259,7 @@ But in Type Theory, Category Theory, we usually consider the <em>domain</em> <co
   </span><span class="o">[</span><span class="no">n</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="no">m</span><span class="o">]</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="pi">.</span><span class="w">
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
   </span><span class="kp">intros</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w"> </span><span class="kp">inversion</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w"> </span><span class="ne">reflexivity</span><span class="pi">.</span><span class="w"> </span><span class="k">Qed</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <blockquote>
   <p>Side question: could Coq derive equality function for inductive type?
@@ -204,12 +268,17 @@ A: nope. Equality for some inductive types are <em>undecidable</em>.</p>
 
 <h3 id="converse-of-injectivity">Converse of injectivity</h3>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="kp">f_equal</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">f</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">B</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="no">y</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="kp">f_equal</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="o">(</span><span class="no">A</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">f</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">B</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">x</span><span class="w"> </span><span class="no">y</span><span class="p">:</span><span class="w"> </span><span class="no">A</span><span class="o">),</span><span class="w">
   </span><span class="no">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">y</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">f</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">f</span><span class="w"> </span><span class="no">y</span><span class="pi">.</span><span class="w">
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w"> 
   </span><span class="kp">intros</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="no">B</span><span class="w"> </span><span class="no">f</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">y</span><span class="w"> </span><span class="no">eq</span><span class="pi">.</span><span class="w"> 
   </span><span class="kp">rewrite</span><span class="w"> </span><span class="no">eq</span><span class="pi">.</span><span class="w"> </span><span class="ne">reflexivity</span><span class="pi">.</span><span class="w"> </span><span class="k">Qed</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="slide-qa-1">Slide Q&amp;A 1</h3>
 
@@ -244,12 +313,17 @@ A: nope. Equality for some inductive types are <em>undecidable</em>.</p>
   <p>most tactics also have a variant that performs a similar operation on a statement in the context.</p>
 </blockquote>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kp">simpl</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="kp">simpl</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
 </span><span class="kp">simpl</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="o">*.</span><span class="w"> </span><span class="c">(* in all hypo and goal *)</span><span class="w">
 
 </span><span class="kp">symmetry</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
 </span><span class="kp">apply</span><span class="w"> </span><span class="no">L</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="applying-in-hypothesis-and-in-conclusion"><code class="highlighter-rouge">apply</code>ing in hypothesis and in conclusion</h3>
 
@@ -259,7 +333,15 @@ A: nope. Equality for some inductive types are <em>undecidable</em>.</p>
   <p>it’s not we unify the ultimate conclusion and generate premises as new goal, but trying to find a hypothesis to match and left the residual conclusion as new hypothesis.</p>
 </blockquote>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">silly3''</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">silly3''</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">),</span><span class="w">
   </span><span class="o">(</span><span class="no">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="o">=?</span><span class="w"> </span><span class="mi">5</span><span class="o">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="no">S</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">n</span><span class="o">))</span><span class="w"> </span><span class="o">=?</span><span class="w"> </span><span class="mi">7</span><span class="o">))</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
   </span><span class="no">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="o">=?</span><span class="w"> </span><span class="mi">5</span><span class="o">)</span><span class="w">  </span><span class="o">-&gt;</span><span class="w">
   </span><span class="no">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="no">S</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">n</span><span class="o">))</span><span class="w"> </span><span class="o">=?</span><span class="w"> </span><span class="mi">7</span><span class="o">).</span><span class="w">
@@ -267,17 +349,22 @@ A: nope. Equality for some inductive types are <em>undecidable</em>.</p>
   </span><span class="kp">intros</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="no">eq</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
   </span><span class="kp">apply</span><span class="w"> </span><span class="no">eq</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">  </span><span class="c">(* or *)</span><span class="w">  </span><span class="kp">apply</span><span class="w"> </span><span class="no">eq</span><span class="pi">.</span><span class="w"> </span><span class="c">(* would be different *)</span><span class="w">
   </span><span class="kp">apply</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">  </span><span class="k">Qed</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>Also if we add one more premises <code class="highlighter-rouge">true = true -&gt;</code>, 
 the subgoal generated by <code class="highlighter-rouge">apply</code> would be in reversed order:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">silly3''</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">silly3''</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">),</span><span class="w">
   </span><span class="o">(</span><span class="no">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="o">=?</span><span class="w"> </span><span class="mi">5</span><span class="o">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="no">S</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">n</span><span class="o">))</span><span class="w"> </span><span class="o">=?</span><span class="w"> </span><span class="mi">7</span><span class="o">))</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
   </span><span class="no">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="o">=?</span><span class="w"> </span><span class="mi">5</span><span class="o">)</span><span class="w">  </span><span class="o">-&gt;</span><span class="w">
   </span><span class="no">true</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">((</span><span class="no">S</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">n</span><span class="o">))</span><span class="w"> </span><span class="o">=?</span><span class="w"> </span><span class="mi">7</span><span class="o">).</span><span class="w">
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 <blockquote>
   <p>Again: “proof engineering”: proof can be done in so many different ways and in different orders.</p>
 </blockquote>
@@ -288,16 +375,20 @@ the subgoal generated by <code class="highlighter-rouge">apply</code> would be i
 
 <p>Considering:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">double_injective</span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">double_injective</span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="o">,</span><span class="w">
         </span><span class="no">double</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="pi">.</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>if we begin with <code class="highlighter-rouge">intros n m. induction n.</code>
 then we get stuck in the inductive case of <code class="highlighter-rouge">n</code>, where the induction hypothesis <code class="highlighter-rouge">IHn'</code> generated is:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">IHn'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="no">n'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">n'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="no">IHn'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="no">n'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">n'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="w">
 </span><span class="no">IHn'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="no">n'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="o">(</span><span class="no">S</span><span class="w"> </span><span class="no">m'</span><span class="o">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">n'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">S</span><span class="w"> </span><span class="no">m'</span><span class="w">  </span><span class="c">(* m = S m' *)</span><span class="w">
-</span></code></pre></div></div>
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>This is not what we want!!</p>
 
@@ -309,8 +400,9 @@ then we get stuck in the inductive case of <code class="highlighter-rouge">n</co
 
 <p>By either <code class="highlighter-rouge">induction n</code> before <code class="highlighter-rouge">intros m</code> or using <code class="highlighter-rouge">generalize dependent m</code>, we can have:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">IHn'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="no">n'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">n'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="w">
-</span></code></pre></div></div>
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="no">IHn'</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="no">n'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">double</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">n'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="w">
+</span></pre></td></tr></tbody></table></code></pre></div></div>
 <p>where the <code class="highlighter-rouge">m</code> here is still universally quantified, so we can instaniate <code class="highlighter-rouge">m</code> with <code class="highlighter-rouge">m'</code> by <code class="highlighter-rouge">apply</code>ing it with <code class="highlighter-rouge">double n' = double m'</code> to yield <code class="highlighter-rouge">n' = m'</code> or vice versa. (recall conditional statements can be <code class="highlighter-rouge">apply</code>ed in 2 ways.)</p>
 
 <h3 id="notes-on-generalize-dependent">Notes on <code class="highlighter-rouge">generalize dependent</code></h3>
