@@ -1,4 +1,4 @@
-I"�<blockquote>
+I"x�<blockquote>
   <p>The <code class="highlighter-rouge">has_type</code> relation is good but doesn’t give us a <em>executable algorithm</em> – 不是一个算法
 but it’s <em>syntax directed</em>, just one typing rule for one term (unique typing) – translate into function!</p>
 </blockquote>
@@ -8,16 +8,7 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
 <p>首先我们需要 check equality for types.
 这里非常简单，如果是 SystemF 会麻烦很多，对 <code class="highlighter-rouge">∀</code> 要做 local nameless 或者 alpha renaming:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="rouge-code"><pre><span class="k">Fixpoint</span><span class="w"> </span><span class="no">eqb_ty</span><span class="w"> </span><span class="o">(</span><span class="no">T1</span><span class="w"> </span><span class="no">T2</span><span class="p">:</span><span class="no">ty</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">bool</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Fixpoint</span><span class="w"> </span><span class="no">eqb_ty</span><span class="w"> </span><span class="o">(</span><span class="no">T1</span><span class="w"> </span><span class="no">T2</span><span class="p">:</span><span class="no">ty</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">bool</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="kr">match</span><span class="w"> </span><span class="no">T1</span><span class="o">,</span><span class="no">T2</span><span class="w"> </span><span class="kp">with</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">Bool</span><span class="o">,</span><span class="w"> </span><span class="no">Bool</span><span class="w"> </span><span class="p">⇒</span><span class="w">
       </span><span class="no">true</span><span class="w">
@@ -26,43 +17,22 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
   </span><span class="o">|</span><span class="w"> </span><span class="p">_</span><span class="o">,</span><span class="p">_</span><span class="w"> </span><span class="p">⇒</span><span class="w">
       </span><span class="no">false</span><span class="w">
   </span><span class="kr">end</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>然后我们需要一个 refl 和一个 reflection，准确得说：「define equality by computation」，反方向用 refl 即可易证</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="k">Lemma</span><span class="w"> </span><span class="no">eqb_ty_refl</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">T1</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Lemma</span><span class="w"> </span><span class="no">eqb_ty_refl</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">T1</span><span class="o">,</span><span class="w">
   </span><span class="no">eqb_ty</span><span class="w"> </span><span class="no">T1</span><span class="w"> </span><span class="no">T1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span><span class="pi">.</span><span class="w">
 
 </span><span class="k">Lemma</span><span class="w"> </span><span class="no">eqb_ty__eq</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">T1</span><span class="w"> </span><span class="no">T2</span><span class="o">,</span><span class="w">
   </span><span class="no">eqb_ty</span><span class="w"> </span><span class="no">T1</span><span class="w"> </span><span class="no">T2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">T1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">T2</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <h2 id="the-typechecker">The Typechecker</h2>
 
 <p>直接 syntax directed，不过麻烦的是需要 pattern matching <code class="highlighter-rouge">option</code>…</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="rouge-code"><pre><span class="k">Fixpoint</span><span class="w"> </span><span class="no">type_check</span><span class="w"> </span><span class="o">(</span><span class="no">Gamma</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">context</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">t</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">option</span><span class="w"> </span><span class="no">ty</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Fixpoint</span><span class="w"> </span><span class="no">type_check</span><span class="w"> </span><span class="o">(</span><span class="no">Gamma</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">context</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">t</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">option</span><span class="w"> </span><span class="no">ty</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="kr">match</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="kp">with</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">var</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w">
       </span><span class="no">Gamma</span><span class="w"> </span><span class="no">x</span><span class="w">
@@ -78,22 +48,17 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
       </span><span class="o">|</span><span class="w"> </span><span class="p">_</span><span class="o">,</span><span class="p">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="no">None</span><span class="w">
       </span><span class="kr">end</span><span class="w">
   </span><span class="o">...</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>在课堂时提到关于 <code class="highlighter-rouge">eqb_ty</code> 的一个细节（我以前也经常犯，在 ML/Haskell 中……）：
 我们能不能在 pattern matching 里支持「用同一个 binding 来 imply 说他们两需要 be equal」？</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="c">(** instead of this **)</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">(** instead of this **)</span><span class="w">
 </span><span class="o">|</span><span class="w"> </span><span class="no">Some</span><span class="w"> </span><span class="o">(</span><span class="no">Arrow</span><span class="w"> </span><span class="no">T11</span><span class="w"> </span><span class="no">T12</span><span class="o">),</span><span class="no">Some</span><span class="w"> </span><span class="no">T2</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="no">eqb_ty</span><span class="w"> </span><span class="no">T11</span><span class="w"> </span><span class="no">T2</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="o">...</span><span class="w">
 
 </span><span class="c">(** can we do this? **)</span><span class="w">
 </span><span class="o">|</span><span class="w"> </span><span class="no">Some</span><span class="w"> </span><span class="o">(</span><span class="no">Arrow</span><span class="w"> </span><span class="no">T</span><span class="w">   </span><span class="no">T'</span><span class="w"> </span><span class="o">),</span><span class="no">Some</span><span class="w"> </span><span class="no">T</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">...</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <blockquote>
   <p>the answer is <strong>NO</strong> because this demands a <em>decidable equality</em>. 
@@ -104,18 +69,7 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
 
 <p>这里我们可以自己定义一个 Haskell <code class="highlighter-rouge">do</code> notation 风格的 <em>monadic</em> notation:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="rouge-code"><pre><span class="k">Notation</span><span class="w"> </span><span class="s2">" x &lt;- e1 ;; e2"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="kr">match</span><span class="w"> </span><span class="no">e1</span><span class="w"> </span><span class="kp">with</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Notation</span><span class="w"> </span><span class="s2">" x &lt;- e1 ;; e2"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="kr">match</span><span class="w"> </span><span class="no">e1</span><span class="w"> </span><span class="kp">with</span><span class="w">
                               </span><span class="o">|</span><span class="w"> </span><span class="no">Some</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="p">⇒</span><span class="w"> </span><span class="no">e2</span><span class="w">
                               </span><span class="o">|</span><span class="w"> </span><span class="no">None</span><span class="w"> </span><span class="p">⇒</span><span class="w"> </span><span class="no">None</span><span class="w">
                               </span><span class="kr">end</span><span class="o">)</span><span class="w">
@@ -126,25 +80,11 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
 
 </span><span class="k">Notation</span><span class="w"> </span><span class="s2">" 'fail' "</span><span class="w">
   </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">None</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>好看一些吧反正：</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</pre></td><td class="rouge-code"><pre><span class="k">Fixpoint</span><span class="w"> </span><span class="no">type_check</span><span class="w"> </span><span class="o">(</span><span class="no">Gamma</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">context</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">t</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">option</span><span class="w"> </span><span class="no">ty</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Fixpoint</span><span class="w"> </span><span class="no">type_check</span><span class="w"> </span><span class="o">(</span><span class="no">Gamma</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">context</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">t</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">option</span><span class="w"> </span><span class="no">ty</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="kr">match</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="kp">with</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">var</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="p">⇒</span><span class="w">
       </span><span class="no">Gamma</span><span class="w"> </span><span class="no">x</span><span class="w"> 
@@ -158,44 +98,26 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
       </span><span class="o">|</span><span class="w"> </span><span class="no">Arrow</span><span class="w"> </span><span class="no">T11</span><span class="w"> </span><span class="no">T12</span><span class="w"> </span><span class="p">⇒</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="no">eqb_ty</span><span class="w"> </span><span class="no">T11</span><span class="w"> </span><span class="no">T2</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="no">T12</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="no">fail</span><span class="w">
       </span><span class="o">|</span><span class="w"> </span><span class="p">_</span><span class="w"> </span><span class="p">⇒</span><span class="w"> </span><span class="no">fail</span><span class="w">
       </span><span class="kr">end</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <h2 id="properties">Properties</h2>
 
 <p>最后我们需要验证一下算法的正确性：
 这里的 soundness 和 completess 都是围绕 “typechecking function ~ typing relation inference rule” 这组关系来说的：</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">type_checking_sound</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">Gamma</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">type_checking_sound</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">Gamma</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
   </span><span class="no">type_check</span><span class="w"> </span><span class="no">Gamma</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Some</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">has_type</span><span class="w"> </span><span class="no">Gamma</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">
 
 </span><span class="k">Theorem</span><span class="w"> </span><span class="no">type_checking_complete</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">Gamma</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="o">,</span><span class="w">
   </span><span class="no">has_type</span><span class="w"> </span><span class="no">Gamma</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">type_check</span><span class="w"> </span><span class="no">Gamma</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Some</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">
 
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <h2 id="exercise">Exercise</h2>
 
 <p>给 <code class="highlighter-rouge">MoreStlc.v</code> 里的 StlcE 写 typechecker, 然后 prove soundness / completeness （过程中用了非常 mega 的 tactics）</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre></td><td class="rouge-code"><pre><span class="c">(** 还不能这么写 **)</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">(** 还不能这么写 **)</span><span class="w">
 </span><span class="o">|</span><span class="w"> </span><span class="no">fst</span><span class="w"> </span><span class="no">p</span><span class="w"> </span><span class="o">=&gt;</span><span class="w">
     </span><span class="o">(</span><span class="no">Prod</span><span class="w"> </span><span class="no">T1</span><span class="w"> </span><span class="no">T2</span><span class="o">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="no">type_check</span><span class="w"> </span><span class="no">Gamma</span><span class="w"> </span><span class="no">p</span><span class="w"> </span><span class="p">;;</span><span class="w">
 
@@ -207,7 +129,7 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
     </span><span class="o">|</span><span class="w"> </span><span class="o">(</span><span class="no">Prod</span><span class="w"> </span><span class="no">T1</span><span class="w"> </span><span class="no">T2</span><span class="o">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="no">T1</span><span class="w">
     </span><span class="o">|</span><span class="w"> </span><span class="p">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="no">fail</span><span class="w">
     </span><span class="kr">end</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <h2 id="extra-exercise-profmtf">Extra Exercise (Prof.Mtf)</h2>
 
@@ -224,18 +146,7 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
 
 <p>以 pure STLC 为例：</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">step</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">step</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kr">Prop</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">ST_AppAbs</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">T11</span><span class="w"> </span><span class="no">t12</span><span class="w"> </span><span class="no">v2</span><span class="o">,</span><span class="w">
          </span><span class="no">value</span><span class="w"> </span><span class="no">v2</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
          </span><span class="o">(</span><span class="no">app</span><span class="w"> </span><span class="o">(</span><span class="no">abs</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">T11</span><span class="w"> </span><span class="no">t12</span><span class="o">)</span><span class="w"> </span><span class="no">v2</span><span class="o">)</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="o">[</span><span class="no">x</span><span class="p">:</span><span class="o">=</span><span class="no">v2</span><span class="o">]</span><span class="no">t12</span><span class="w">
@@ -246,21 +157,8 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
          </span><span class="no">value</span><span class="w"> </span><span class="no">v1</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
          </span><span class="no">t2</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="no">t2'</span><span class="w"> </span><span class="o">-&gt;</span><span class="w">
          </span><span class="o">(</span><span class="no">app</span><span class="w"> </span><span class="no">v1</span><span class="w"> </span><span class="no">t2</span><span class="o">)</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="o">(</span><span class="no">app</span><span class="w"> </span><span class="no">v1</span><span class="w"> </span><span class="no">t2'</span><span class="o">)</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre></td><td class="rouge-code"><pre><span class="k">Fixpoint</span><span class="w"> </span><span class="no">stepf</span><span class="w"> </span><span class="o">(</span><span class="no">t</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">option</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+</span></code></pre></div></div>
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Fixpoint</span><span class="w"> </span><span class="no">stepf</span><span class="w"> </span><span class="o">(</span><span class="no">t</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">tm</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">option</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="kr">match</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="kp">with</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">var</span><span class="w"> </span><span class="no">x</span><span class="w">        </span><span class="o">=&gt;</span><span class="w"> </span><span class="no">None</span><span class="w"> </span><span class="c">(* We only define step for closed terms *)</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">abs</span><span class="w"> </span><span class="no">x1</span><span class="w"> </span><span class="no">T1</span><span class="w"> </span><span class="no">t2</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="no">None</span><span class="w"> </span><span class="c">(* Abstraction is a value *)</span><span class="w">
@@ -273,7 +171,7 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
     </span><span class="kr">end</span><span class="w">
 
 </span><span class="k">Definition</span><span class="w"> </span><span class="no">assert</span><span class="w"> </span><span class="o">(</span><span class="no">b</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">bool</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">a</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">option</span><span class="w"> </span><span class="no">tm</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">option</span><span class="w"> </span><span class="no">tm</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="no">None</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <ol>
   <li>
@@ -288,11 +186,9 @@ but it’s <em>syntax directed</em>, just one typing rule for one term (unique t
 
 <h3 id="soundness">Soundness</h3>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">sound_stepf</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">t'</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">sound_stepf</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">forall</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="no">t'</span><span class="o">,</span><span class="w">
     </span><span class="no">stepf</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Some</span><span class="w"> </span><span class="no">t'</span><span class="w">  </span><span class="o">-&gt;</span><span class="w">  </span><span class="no">t</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="no">t'</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>证明用了一个 given 的非常夸张的 automation…</p>
 

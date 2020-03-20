@@ -1,4 +1,4 @@
-I"3j<ul>
+I"b<ul>
   <li><code class="highlighter-rouge">auto</code> - proof search</li>
   <li><code class="highlighter-rouge">Ltac</code> - automated forward reasoning (hypothesis matching machinery)</li>
   <li><code class="highlighter-rouge">eauto</code>, <code class="highlighter-rouge">eapply</code> - deferred instantiation of existentials</li>
@@ -6,15 +6,11 @@
 
 <h2 id="ltac-macro"><code class="highlighter-rouge">Ltac</code> macro</h2>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="k">Ltac</span><span class="w"> </span><span class="no">inv</span><span class="w"> </span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="kp">inversion</span><span class="w"> </span><span class="no">H</span><span class="p">;</span><span class="w"> </span><span class="kp">subst</span><span class="p">;</span><span class="w"> </span><span class="kp">clear</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Ltac</span><span class="w"> </span><span class="no">inv</span><span class="w"> </span><span class="no">H</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="kp">inversion</span><span class="w"> </span><span class="no">H</span><span class="p">;</span><span class="w"> </span><span class="kp">subst</span><span class="p">;</span><span class="w"> </span><span class="kp">clear</span><span class="w"> </span><span class="no">H</span><span class="pi">.</span><span class="w">
 
 </span><span class="c">(** later in the proof... **)</span><span class="w">
 </span><span class="no">inv</span><span class="w"> </span><span class="no">H5</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <h2 id="the-auto-tactic">The <code class="highlighter-rouge">auto</code> Tactic</h2>
 
@@ -22,19 +18,13 @@
   <p><code class="highlighter-rouge">auto</code> can free us by <em>searching</em> for a sequence of applications that will prove the goal:</p>
 </blockquote>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="kp">intros</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="no">R</span><span class="w"> </span><span class="no">H1</span><span class="w"> </span><span class="no">H2</span><span class="w"> </span><span class="no">H3</span><span class="pi">.</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kp">intros</span><span class="w"> </span><span class="no">P</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="no">R</span><span class="w"> </span><span class="no">H1</span><span class="w"> </span><span class="no">H2</span><span class="w"> </span><span class="no">H3</span><span class="pi">.</span><span class="w">
 </span><span class="kp">apply</span><span class="w"> </span><span class="no">H2</span><span class="pi">.</span><span class="w"> </span><span class="kp">apply</span><span class="w"> </span><span class="no">H1</span><span class="pi">.</span><span class="w"> </span><span class="ne">assumption</span><span class="pi">.</span><span class="w">
 
 
 </span><span class="c">(** can be replaced by... **)</span><span class="w">
 </span><span class="kp">auto</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p><code class="highlighter-rouge">auto</code> solves goals that are solvable by <em>any combination</em> of</p>
 <ul>
@@ -51,21 +41,7 @@
 so there are limits to how far auto will search by default.  (i.e. <code class="highlighter-rouge">5</code>)</p>
 </blockquote>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</pre></td><td class="rouge-code"><pre><span class="k">Example</span><span class="w"> </span><span class="no">auto_example_3</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="no">R</span><span class="w"> </span><span class="no">S</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="no">U</span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Example</span><span class="w"> </span><span class="no">auto_example_3</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="no">Q</span><span class="w"> </span><span class="no">R</span><span class="w"> </span><span class="no">S</span><span class="w"> </span><span class="no">T</span><span class="w"> </span><span class="no">U</span><span class="p">:</span><span class="w"> </span><span class="kr">Prop</span><span class="o">),</span><span class="w">
   </span><span class="o">(</span><span class="no">P</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">Q</span><span class="o">)</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="o">(</span><span class="no">Q</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">R</span><span class="o">)</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="o">(</span><span class="no">R</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="no">S</span><span class="o">)</span><span class="w"> </span><span class="p">→</span><span class="w">
@@ -79,7 +55,7 @@ so there are limits to how far auto will search by default.  (i.e. <code class="
   </span><span class="c">(* 可选的参数用来控制它的搜索深度（默认为 5）, 6 就刚好能解决了！ *)</span><span class="w">
   </span><span class="kp">auto</span><span class="w"> </span><span class="mi">6</span><span class="o">.</span><span class="w">
 </span><span class="k">Qed</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <h3 id="hint-database-提示数据库">Hint Database 提示数据库</h3>
 
@@ -93,15 +69,7 @@ common lemmas about <em>equality</em> and <em>logical operators</em> are install
 我们可以为某次 <code class="highlighter-rouge">auto</code> 的调用扩展提示数据库，<code class="highlighter-rouge">auto using ...</code></p>
 </blockquote>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="rouge-code"><pre><span class="k">Example</span><span class="w"> </span><span class="no">auto_example_6</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="no">p</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Example</span><span class="w"> </span><span class="no">auto_example_6</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="no">p</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">,</span><span class="w">
   </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="err">≤</span><span class="w"> </span><span class="no">p</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="err">≤</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="p">∧</span><span class="w"> </span><span class="no">m</span><span class="w"> </span><span class="err">≤</span><span class="w"> </span><span class="no">n</span><span class="o">))</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">n</span><span class="w"> </span><span class="err">≤</span><span class="w"> </span><span class="no">p</span><span class="w"> </span><span class="p">→</span><span class="w">
   </span><span class="no">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">m</span><span class="pi">.</span><span class="w">
@@ -109,21 +77,16 @@ common lemmas about <em>equality</em> and <em>logical operators</em> are install
   </span><span class="kp">intros</span><span class="pi">.</span><span class="w">
   </span><span class="kp">auto</span><span class="w"> </span><span class="no">using</span><span class="w"> </span><span class="no">le_antisym</span><span class="pi">.</span><span class="w">
 </span><span class="k">Qed</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <h3 id="global-hint-database-添加到全局提示数据库">Global Hint Database 添加到全局提示数据库</h3>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="k">Hint</span><span class="w"> </span><span class="no">Resolve</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">          
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Hint</span><span class="w"> </span><span class="no">Resolve</span><span class="w"> </span><span class="no">T</span><span class="pi">.</span><span class="w">          
 
 </span><span class="k">Hint</span><span class="w"> </span><span class="no">Constructors</span><span class="w"> </span><span class="no">c</span><span class="pi">.</span><span class="w">
 
 </span><span class="k">Hint</span><span class="w"> </span><span class="no">Unfold</span><span class="w"> </span><span class="no">d</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <h3 id="proof-with-auto"><code class="highlighter-rouge">Proof with auto.</code></h3>
 
@@ -133,11 +96,9 @@ common lemmas about <em>equality</em> and <em>logical operators</em> are install
 
 <p>对于很常见的一种矛盾情形：</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre><span class="no">H1</span><span class="p">:</span><span class="w"> </span><span class="no">beval</span><span class="w"> </span><span class="no">st</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">H1</span><span class="p">:</span><span class="w"> </span><span class="no">beval</span><span class="w"> </span><span class="no">st</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span><span class="w">
 </span><span class="no">H2</span><span class="p">:</span><span class="w"> </span><span class="no">beval</span><span class="w"> </span><span class="no">st</span><span class="w"> </span><span class="no">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p><code class="highlighter-rouge">contradiction</code> 并不能解决，必须 <code class="highlighter-rouge">rewrite H1 in H2; inversion H2</code>.</p>
 
@@ -145,35 +106,17 @@ common lemmas about <em>equality</em> and <em>logical operators</em> are install
   <li>宏：</li>
 </ol>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="k">Ltac</span><span class="w"> </span><span class="no">rwinv</span><span class="w"> </span><span class="no">H1</span><span class="w"> </span><span class="no">H2</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="kp">rewrite</span><span class="w"> </span><span class="no">H1</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="no">H2</span><span class="p">;</span><span class="w"> </span><span class="no">inv</span><span class="w"> </span><span class="no">H2</span><span class="pi">.</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Ltac</span><span class="w"> </span><span class="no">rwinv</span><span class="w"> </span><span class="no">H1</span><span class="w"> </span><span class="no">H2</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="kp">rewrite</span><span class="w"> </span><span class="no">H1</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="no">H2</span><span class="p">;</span><span class="w"> </span><span class="no">inv</span><span class="w"> </span><span class="no">H2</span><span class="pi">.</span><span class="w">
 
 </span><span class="c">(** later in the proof... **)</span><span class="w">
 </span><span class="no">rwinv</span><span class="w"> </span><span class="no">H</span><span class="w"> </span><span class="no">H2</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <ol>
   <li><code class="highlighter-rouge">match goal</code> 调用宏</li>
 </ol>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</pre></td><td class="rouge-code"><pre><span class="k">Ltac</span><span class="w"> </span><span class="no">find_rwinv</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Ltac</span><span class="w"> </span><span class="no">find_rwinv</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="kr">match</span><span class="w"> </span><span class="no">goal</span><span class="w"> </span><span class="kp">with</span><span class="w">
     </span><span class="no">H1</span><span class="p">:</span><span class="w"> </span><span class="nv">?E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">true</span><span class="o">,</span><span class="w">
     </span><span class="no">H2</span><span class="p">:</span><span class="w"> </span><span class="nv">?E</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">false</span><span class="w">
@@ -187,39 +130,22 @@ common lemmas about <em>equality</em> and <em>logical operators</em> are install
 </span><span class="o">-</span><span class="w"> </span><span class="c">(* E_WhileTrue *)</span><span class="w">
   </span><span class="o">+</span><span class="w"> </span><span class="c">(* b 求值为 true *)</span><span class="w">
     </span><span class="kp">rewrite</span><span class="w"> </span><span class="o">(</span><span class="no">IHE1_1</span><span class="w"> </span><span class="no">st'0</span><span class="w"> </span><span class="no">H3</span><span class="o">)</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="o">*.</span><span class="w"> </span><span class="kp">auto</span><span class="pi">.</span><span class="w"> </span><span class="k">Qed</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>可以看到最后只剩这种改写形式…我们也把他们自动化了：</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="k">Ltac</span><span class="w"> </span><span class="no">find_eqn</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Ltac</span><span class="w"> </span><span class="no">find_eqn</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="kr">match</span><span class="w"> </span><span class="no">goal</span><span class="w"> </span><span class="kp">with</span><span class="w">
     </span><span class="no">H1</span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">x</span><span class="o">,</span><span class="w"> </span><span class="nv">?P</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="p">→</span><span class="w"> </span><span class="nv">?L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">?R</span><span class="o">,</span><span class="w">
     </span><span class="no">H2</span><span class="p">:</span><span class="w"> </span><span class="nv">?P</span><span class="w"> </span><span class="nv">?X</span><span class="w">
     </span><span class="p">⊢</span><span class="w"> </span><span class="p">_</span><span class="w"> </span><span class="p">⇒</span><span class="w"> </span><span class="kp">rewrite</span><span class="w"> </span><span class="o">(</span><span class="no">H1</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="no">H2</span><span class="o">)</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="o">*</span><span class="w">
   </span><span class="kr">end</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>配合上 <code class="highlighter-rouge">repeat</code>…我们可以 keep doing useful rewrites until only trivial ones are left.
 最终效果：</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">ceval_deterministic'''''</span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">c</span><span class="w"> </span><span class="no">st</span><span class="w"> </span><span class="no">st1</span><span class="w"> </span><span class="no">st2</span><span class="o">,</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">ceval_deterministic'''''</span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="no">c</span><span class="w"> </span><span class="no">st</span><span class="w"> </span><span class="no">st1</span><span class="w"> </span><span class="no">st2</span><span class="o">,</span><span class="w">
     </span><span class="no">st</span><span class="w"> </span><span class="o">=[</span><span class="w"> </span><span class="no">c</span><span class="w"> </span><span class="o">]</span><span class="p">⇒</span><span class="w"> </span><span class="no">st1</span><span class="w"> </span><span class="p">→</span><span class="w">
     </span><span class="no">st</span><span class="w"> </span><span class="o">=[</span><span class="w"> </span><span class="no">c</span><span class="w"> </span><span class="o">]</span><span class="p">⇒</span><span class="w"> </span><span class="no">st2</span><span class="w"> </span><span class="p">→</span><span class="w">
     </span><span class="no">st1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">st2</span><span class="pi">.</span><span class="w">
@@ -230,18 +156,15 @@ common lemmas about <em>equality</em> and <em>logical operators</em> are install
     </span><span class="kp">try</span><span class="w"> </span><span class="no">find_rwinv</span><span class="p">;</span><span class="w">
     </span><span class="kp">repeat</span><span class="w"> </span><span class="no">find_eqn</span><span class="p">;</span><span class="w"> </span><span class="kp">auto</span><span class="pi">.</span><span class="w">
 </span><span class="k">Qed</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>即使我们给 IMP 加上一个 <code class="highlighter-rouge">CRepeat</code>（其实就是 <code class="highlighter-rouge">DO c WHILE b</code>)，
 会发现颠倒一下自动化的顺序就能 work 了</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="w">  </span><span class="kp">induction</span><span class="w"> </span><span class="no">E1</span><span class="p">;</span><span class="w"> </span><span class="kp">intros</span><span class="w"> </span><span class="no">st2</span><span class="w"> </span><span class="no">E2</span><span class="p">;</span><span class="w"> </span><span class="no">inv</span><span class="w"> </span><span class="no">E2</span><span class="p">;</span><span class="w"> 
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">  </span><span class="kp">induction</span><span class="w"> </span><span class="no">E1</span><span class="p">;</span><span class="w"> </span><span class="kp">intros</span><span class="w"> </span><span class="no">st2</span><span class="w"> </span><span class="no">E2</span><span class="p">;</span><span class="w"> </span><span class="no">inv</span><span class="w"> </span><span class="no">E2</span><span class="p">;</span><span class="w"> 
     </span><span class="kp">repeat</span><span class="w"> </span><span class="no">find_eqn</span><span class="p">;</span><span class="w"> 
     </span><span class="kp">try</span><span class="w"> </span><span class="no">find_rwinv</span><span class="p">;</span><span class="w"> </span><span class="kp">auto</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>当然，这种「超级自动化」(hyper-automation) 并不总是现实，也不好调试…</p>
 
@@ -253,21 +176,7 @@ common lemmas about <em>equality</em> and <em>logical operators</em> are install
 
 <p>比如对于</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</pre></td><td class="rouge-code"><pre><span class="k">Example</span><span class="w"> </span><span class="no">ceval_example1</span><span class="p">:</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Example</span><span class="w"> </span><span class="no">ceval_example1</span><span class="p">:</span><span class="w">
   </span><span class="no">empty_st</span><span class="w"> </span><span class="o">=[</span><span class="w">
     </span><span class="no">X</span><span class="w"> </span><span class="p">::</span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;;</span><span class="w">
     </span><span class="no">TEST</span><span class="w"> </span><span class="no">X</span><span class="w"> </span><span class="err">≤</span><span class="w"> </span><span class="mi">1</span><span class="w">
@@ -281,7 +190,7 @@ common lemmas about <em>equality</em> and <em>logical operators</em> are install
   </span><span class="o">-</span><span class="w"> </span><span class="kp">apply</span><span class="w"> </span><span class="no">E_Ass</span><span class="pi">.</span><span class="w"> </span><span class="ne">reflexivity</span><span class="pi">.</span><span class="w">
   </span><span class="o">-</span><span class="w"> </span><span class="kp">apply</span><span class="w"> </span><span class="no">E_IfFalse</span><span class="pi">.</span><span class="w"> </span><span class="ne">reflexivity</span><span class="pi">.</span><span class="w"> </span><span class="kp">apply</span><span class="w"> </span><span class="no">E_Ass</span><span class="pi">.</span><span class="w"> </span><span class="ne">reflexivity</span><span class="pi">.</span><span class="w">
 </span><span class="k">Qed</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>没有 <code class="highlighter-rouge">with</code> 就会 <code class="highlighter-rouge">Error: Unable to find an instance for the variable st'</code></p>
 

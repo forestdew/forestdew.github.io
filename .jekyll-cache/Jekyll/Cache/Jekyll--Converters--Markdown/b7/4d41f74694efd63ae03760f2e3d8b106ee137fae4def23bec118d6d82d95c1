@@ -1,4 +1,4 @@
-I"q�<blockquote>
+I"��<blockquote>
   <p>今年 9 月份的时候，《程序员》杂志社就邀请我写一篇关于 PWA 的文章。后来花式拖稿，拖过了 10 月的 QCon，11 月的 GDG DevFest，终于在 12 月把这篇长文熬了出来。几次分享的不成熟，这次的结构算是比较满意了。「 可能是目前中文世界里对 PWA 最全面详细的长文了」，希望你能喜欢。<br /><br />
 本文首发于 <a href="http://geek.csdn.net/news/detail/135595">CSDN</a> 与《程序员》2017 年 2 月刊，同步发布于 <a href="https://huangxuan.me">Hux Blog</a>、<a href="https://zhuanlan.zhihu.com/FrontendMagazine">前端外刊评论 - 知乎专栏</a>，转载请保留链接 ;)</p>
 </blockquote>
@@ -54,31 +54,7 @@
 
 <p>但是很快，随着越来越多的私有平台通过 <code class="highlighter-rouge">&lt;meta&gt;</code>/<code class="highlighter-rouge">&lt;link&gt;</code> 标签来为 web 应用添加「私货」，<code class="highlighter-rouge">&lt;head&gt;</code> 很快就被塞满了：</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-</pre></td><td class="rouge-code"><pre><span class="c">&lt;!-- Add to homescreen for Safari on iOS --&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- Add to homescreen for Safari on iOS --&gt;</span>
 <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"apple-mobile-web-app-capable"</span> <span class="na">content=</span><span class="s">"yes"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"apple-mobile-web-app-status-bar-style"</span> <span class="na">content=</span><span class="s">"black"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"apple-mobile-web-app-title"</span> <span class="na">content=</span><span class="s">"Lighten"</span><span class="nt">&gt;</span>
@@ -102,28 +78,13 @@
 
 <span class="c">&lt;!-- Generic Icon --&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"shortcut icon"</span> <span class="na">href=</span><span class="s">"images/touch/touch-icon-57x57.png"</span><span class="nt">&gt;</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>显然，这种做法并不优雅：分散又重复的元数据定义多余且难以维持同步，与 html 耦合在一起也加重了浏览器检查元数据未来变动的成本。与此同时，社区里开始出现使用 manifest 文件以中心化地描述元数据的方案，比如 <a href="https://developer.chrome.com/extensions/manifest" title="Chrome Apps Manifest">Chrome Extension、 Chrome Hosted Web Apps (2010)</a> 与 <a href="https://developer.mozilla.org/en-US/docs/Archive/Firefox_OS/Firefox_OS_apps/Building_apps_for_Firefox_OS/Manifest" title="Firefox OS App Manifest">Firefox OS App Manifest (2011)</a> 使用 JSON；<a href="http://cordova.apache.org/docs/en/6.x/config_ref/index.html" title="Config.xml - Apache Cordova">Cordova</a> 与 <a href="https://msdn.microsoft.com/en-us/library/dn320426%28v=vs.85%29.aspx" title="Browser configuration schema reference - MSDN">Windows Pinned Site</a> 使用 XML；</p>
 
 <p>2013 年，W3C WebApps 工作组开始对基于 JSON 的 Manifest 进行标准化，于同年年底发布<a href="https://www.w3.org/TR/2013/WD-appmanifest-20131217/" title="Manifest for web apps and bookmarks - First Public Working Draft">第一份公开 Working Draft</a>，并逐渐演化成为今天的 W3C Web App Manifest：</p>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-</pre></td><td class="rouge-code"><pre><span class="p">{</span><span class="w">
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
   </span><span class="nl">"short_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Manifest Sample"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Web Application Manifest Sample"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"icons"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
@@ -138,12 +99,10 @@
   </span><span class="nl">"theme_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#000"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"background_color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#fff"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre><span class="c">&lt;!-- document --&gt;</span>
+</span></code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- document --&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"manifest"</span> <span class="na">href=</span><span class="s">"/manifest.json"</span><span class="nt">&gt;</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>诸如 <code class="highlighter-rouge">name</code>、<code class="highlighter-rouge">icons</code>、<code class="highlighter-rouge">display</code> 都是我们比较熟悉的，而大部分新增的成员则为 web 应用带来了一系列以前 web 应用想做却做不到（或在之前只能靠 hack）的新特性：</p>
 
@@ -164,25 +123,12 @@
 
 <p>在 Gears API 中，我们通过向 LocalServer 模块提交一个缓存文件清单来实现离线支持：</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="c1">// Somewhere in your javascript</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Somewhere in your javascript</span>
 <span class="kd">var</span> <span class="nx">localServer</span> <span class="o">=</span> <span class="nx">google</span><span class="p">.</span><span class="nx">gears</span><span class="p">.</span><span class="nx">factory</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="dl">"</span><span class="s2">bata.localserver</span><span class="dl">"</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">localServer</span><span class="p">.</span><span class="nx">createManagedStore</span><span class="p">(</span><span class="nx">STORE_NAME</span><span class="p">);</span>
 <span class="nx">store</span><span class="p">.</span><span class="nx">manifestUrl</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">manifest.json</span><span class="dl">"</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="rouge-code"><pre><span class="c1">// manifest.json</span>
+</code></pre></div></div>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// manifest.json</span>
 <span class="p">{</span>
   <span class="dl">"</span><span class="s2">betaManifestVersion</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
   <span class="dl">"</span><span class="s2">version</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1.0</span><span class="dl">"</span><span class="p">,</span>
@@ -191,24 +137,18 @@
     <span class="p">{</span> <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">main.js</span><span class="dl">"</span> <span class="p">}</span>
   <span class="p">]</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>是不是感到很熟悉？好像 <a href="https://www.w3.org/TR/2011/WD-html5-20110525/offline.html" title="HTML5 5.6 Offline Web Applications">HTML5 规范</a>中的 Application Cache 也是类似的东西？</p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nt">&lt;html</span> <span class="na">manifest=</span><span class="s">"cache.appcache"</span><span class="nt">&gt;</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre>CACHE MANIFEST
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html</span> <span class="na">manifest=</span><span class="s">"cache.appcache"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CACHE MANIFEST
 
 CACHE:
 index.html
 main.js
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>是的，Gears 的 LocalServer 就是后来大家所熟知的 App Cache 的前身，大约从 <a href="https://www.w3.org/TR/offline-webapps/" title="Offline Web Applications">2008</a> 年开始 W3C 就开始尝试将 Gears 进行标准化了；除了 LocalServer，Gears 中用于提供并行计算能力的 WorkerPool 模块与用于提供本地数据库与 SQL 支持的 Database 模块也分别是日后 Web Worker 与 Web SQL Database（后被废弃）的前身。</p>
 
@@ -223,15 +163,11 @@ main.js
 
 <p>比如说，我们可以给网页 <code class="highlighter-rouge">foo.html</code> 注册这么一个 Service Worker，它将劫持由 <code class="highlighter-rouge">foo.html</code> 发起的一切 HTTP 请求，并统统返回未设置 <code class="highlighter-rouge">Content-Type</code> 的 <code class="highlighter-rouge">Hello World!</code>：</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="c1">// sw.js</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// sw.js</span>
 <span class="nb">self</span><span class="p">.</span><span class="nx">onfetch</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">e</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span><span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello World!</span><span class="dl">'</span><span class="p">))</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>Service Worker 第一次发布于 2014 年的 Google IO 上，目前已处于 W3C 工作草案的状态。其设计吸取了 Application Cache 的失败经验，作为 web 应用的开发者的你有着完全的控制能力；同时，它还借鉴了 Chrome 多年来在 Chrome Extension 上的设计经验（Chrome Background Pages 与 Chrome Event Pages），采用了基于「事件驱动」的唤醒机制，以大幅节省后台计算的能耗。比如上面的 <code class="highlighter-rouge">fetch</code> 其实就是会唤醒 Service Worker 的事件之一。</p>
 
@@ -240,18 +176,7 @@ main.js
 
 <p>除了类似 <code class="highlighter-rouge">fetch</code> 这样的功能事件外，Service Worker 还提供了一组生命周期事件，包括安装、激活等等。比如，在 Service Worker 的「安装」事件中，我们可以把 web 应用所需要的资源统统预先下载并缓存到 Cache Storage 中去：</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="rouge-code"><pre><span class="c1">// sw.js</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// sw.js</span>
 <span class="nb">self</span><span class="p">.</span><span class="nx">oninstall</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">e</span><span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span>
     <span class="nx">caches</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">'</span><span class="s1">installation</span><span class="dl">'</span><span class="p">)</span>
@@ -262,20 +187,11 @@ main.js
       <span class="p">]))</span>
   <span class="p">)</span>
 <span class="p">});</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>这样，当用户离线，网络无法访问时，我们就可以从缓存中启动我们的 web 应用：</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="rouge-code"><pre><span class="c1">//sw.js</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//sw.js</span>
 <span class="nb">self</span><span class="p">.</span><span class="nx">onfetch</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">fetched</span> <span class="o">=</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">request</span><span class="p">)</span>
   <span class="kd">const</span> <span class="nx">cached</span> <span class="o">=</span> <span class="nx">caches</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">request</span><span class="p">)</span>
@@ -284,7 +200,7 @@ main.js
     <span class="nx">fetched</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">_</span> <span class="o">=&gt;</span> <span class="nx">cached</span><span class="p">)</span>
   <span class="p">)</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>可以看出，Service Worker 被设计为一个相对底层（low-level）、高度可编程、子概念众多，也因此异常灵活且强大的 API，故本文只能展示它的冰山一角。出于安全考虑，注册 Service Worker 要求你的 web 应用部署于 HTTPS 协议下，以免利用 Service Worker 的中间人攻击。笔者在今年 GDG 北京的 DevFest 上分享了 <a href="https://huangxuan.me/2016/11/20/sw-101-gdgdf/">Service Worker 101</a>，涵盖了 Service Worker 譬如「网络优先」、「缓存优先」、「网络与缓存比赛」这些更复杂的缓存策略、学习资料、以及<a href="https://github.com/Huxpro/sw-101-gdgdf">示例代码</a>，可以供大家参考。</p>
 
@@ -305,23 +221,7 @@ main.js
 
 <p>在 PWA 中，我们利用 Service Worker 的后台计算能力结合 Push API 对推送事件进行响应，并通过 Notification API 实现通知的发出与处理：</p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="rouge-code"><pre><span class="c1">// sw.js</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// sw.js</span>
 <span class="nb">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">push</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">event</span><span class="p">.</span><span class="nx">waitUntil</span><span class="p">(</span>
     <span class="c1">// Process the event and display a notification.</span>
@@ -337,7 +237,7 @@ main.js
 <span class="nb">self</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">notificationclose</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>  
   <span class="c1">// Do something with the event  </span>
 <span class="p">});</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>对于 Push Notification，笔者的几次分享中一直都提的稍微少一些，一是因为 Push API 还处于 Editor Draft 的状态，二是目前浏览器与推送服务间的协议支持还不够成熟：Chrome（与其它基于 Blink 的浏览器）在 Chromium 52 之前只支持基于 Google 私有的 GCM/FCM 服务进行通知推送。不过好消息是，继 Firefox 44 之后，Chrome 52 与 Opera 39 也紧追其后实现了正在由 IETF 进行标准化的 <a href="https://tools.ietf.org/html/draft-ietf-webpush-protocol-12" title="Web Push Protocol">Web 推送协议（Web Push Protocol）</a>。</p>
 

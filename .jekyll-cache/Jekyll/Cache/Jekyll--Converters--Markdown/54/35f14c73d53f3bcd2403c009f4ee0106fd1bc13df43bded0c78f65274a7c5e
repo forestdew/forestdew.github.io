@@ -1,44 +1,31 @@
-I"�F<h2 id="pair-of-numbers">Pair of Numbers</h2>
+I"!A<h2 id="pair-of-numbers">Pair of Numbers</h2>
 
 <p>Q: Why name <code class="highlighter-rouge">inductive</code>? 
 A: Inductive means <em>building things bottom-up</em>, it doesn’t have to self-referencial (recursive)
 (see below <code class="highlighter-rouge">induction on lists</code> as well.)</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">natprod</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">natprod</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">pair</span><span class="w"> </span><span class="o">(</span><span class="no">n1</span><span class="w"> </span><span class="no">n2</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">).</span><span class="w">
 
 </span><span class="k">Notation</span><span class="w"> </span><span class="s2">"( x , y )"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">pair</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">y</span><span class="o">).</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>Proof on pair cannot simply <code class="highlighter-rouge">simpl.</code></p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">surjective_pairing_stuck</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="o">(</span><span class="no">p</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">natprod</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">surjective_pairing_stuck</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="o">(</span><span class="no">p</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">natprod</span><span class="o">),</span><span class="w">
   </span><span class="no">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">fst</span><span class="w"> </span><span class="no">p</span><span class="o">,</span><span class="w"> </span><span class="no">snd</span><span class="w"> </span><span class="no">p</span><span class="o">).</span><span class="w">
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
   </span><span class="kp">simpl</span><span class="pi">.</span><span class="w"> </span><span class="c">(* Doesn't reduce anything! *)</span><span class="w">
 </span><span class="no">Abort</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>We have to <em>expose the structure</em>:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="k">Theorem</span><span class="w"> </span><span class="no">surjective_pairing</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="o">(</span><span class="no">p</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">natprod</span><span class="o">),</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Theorem</span><span class="w"> </span><span class="no">surjective_pairing</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">∀</span><span class="o">(</span><span class="no">p</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">natprod</span><span class="o">),</span><span class="w">
   </span><span class="no">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">fst</span><span class="w"> </span><span class="no">p</span><span class="o">,</span><span class="w"> </span><span class="no">snd</span><span class="w"> </span><span class="no">p</span><span class="o">).</span><span class="w">
 </span><span class="k">Proof</span><span class="pi">.</span><span class="w">
   </span><span class="kp">intros</span><span class="w"> </span><span class="no">p</span><span class="pi">.</span><span class="w"> </span><span class="kp">destruct</span><span class="w"> </span><span class="no">p</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="o">[</span><span class="no">n</span><span class="w"> </span><span class="no">m</span><span class="o">**.</span><span class="w"> </span><span class="kp">simpl</span><span class="pi">.</span><span class="w"> </span><span class="ne">reflexivity</span><span class="pi">.</span><span class="w"> </span><span class="k">Qed</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>It only generate <strong>one subgoal</strong>, becasue</p>
 <blockquote>
@@ -70,29 +57,22 @@ A: Inductive means <em>building things bottom-up</em>, it doesn’t have to self
   <p>Generalizing the definition of pairs</p>
 </blockquote>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="k">Inductive</span><span class="w"> </span><span class="no">natlist</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Inductive</span><span class="w"> </span><span class="no">natlist</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kr">Type</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">nil</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">cons</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">l</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">natlist</span><span class="o">).</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>The ability of quosiquotation using <code class="highlighter-rouge">Notation</code> is awesome:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="k">Notation</span><span class="w"> </span><span class="s2">"x :: l"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">cons</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">l</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">60</span><span class="o">,</span><span class="w"> </span><span class="no">right</span><span class="w"> </span><span class="no">associativity</span><span class="o">).</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Notation</span><span class="w"> </span><span class="s2">"x :: l"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">cons</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">l</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">60</span><span class="o">,</span><span class="w"> </span><span class="no">right</span><span class="w"> </span><span class="no">associativity</span><span class="o">).</span><span class="w">
 </span><span class="k">Notation</span><span class="w"> </span><span class="s2">"[ ]"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="no">nil</span><span class="pi">.</span><span class="w">
 </span><span class="k">Notation</span><span class="w"> </span><span class="s2">"[ x ; .. ; y ]"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">cons</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="o">(</span><span class="no">cons</span><span class="w"> </span><span class="no">y</span><span class="w"> </span><span class="no">nil</span><span class="o">)</span><span class="w"> </span><span class="o">..).</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>It’s exactly like OCaml, even for <code class="highlighter-rouge">;</code>, <code class="highlighter-rouge">at level 60</code> means it’s tightly than <code class="highlighter-rouge">+ at level 50</code> .</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="k">Notation</span><span class="w"> </span><span class="s2">"x ++ y"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">app</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">y</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">right</span><span class="w"> </span><span class="no">associativity</span><span class="o">,</span><span class="w"> </span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">60</span><span class="o">).</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Notation</span><span class="w"> </span><span class="s2">"x ++ y"</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="no">app</span><span class="w"> </span><span class="no">x</span><span class="w"> </span><span class="no">y</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">right</span><span class="w"> </span><span class="no">associativity</span><span class="o">,</span><span class="w"> </span><span class="kp">at</span><span class="w"> </span><span class="no">level</span><span class="w"> </span><span class="mi">60</span><span class="o">).</span><span class="w">
+</span></code></pre></div></div>
 
 <p>Instead of SML/OCaml’s <code class="highlighter-rouge">@</code>, Coq chooses Haskell’s <code class="highlighter-rouge">++</code>.</p>
 
@@ -100,17 +80,12 @@ A: Inductive means <em>building things bottom-up</em>, it doesn’t have to self
 
 <p>Coq function (for some reason) has to be <strong>total</strong>, so <code class="highlighter-rouge">hd</code> require a <code class="highlighter-rouge">default</code> value as 1st argument:</p>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="k">Definition</span><span class="w"> </span><span class="no">hd</span><span class="w"> </span><span class="o">(</span><span class="no">default</span><span class="p">:</span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">l</span><span class="p">:</span><span class="no">natlist</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Definition</span><span class="w"> </span><span class="no">hd</span><span class="w"> </span><span class="o">(</span><span class="no">default</span><span class="p">:</span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">l</span><span class="p">:</span><span class="no">natlist</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">nat</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="kr">match</span><span class="w"> </span><span class="no">l</span><span class="w"> </span><span class="kp">with</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">nil</span><span class="w"> </span><span class="p">⇒</span><span class="w"> </span><span class="no">default</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">h</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="no">t</span><span class="w"> </span><span class="p">⇒</span><span class="w"> </span><span class="no">h</span><span class="w">
   </span><span class="kr">end</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <h2 id="induction-on-lists">Induction on Lists.</h2>
 
@@ -150,25 +125,18 @@ we can reason as follows</p>
 
 <h2 id="search">Search</h2>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="k">Search</span><span class="w"> </span><span class="no">rev</span><span class="w">  </span><span class="c">(* list all theorems of [rev] *)</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Search</span><span class="w"> </span><span class="no">rev</span><span class="w">  </span><span class="c">(* list all theorems of [rev] *)</span><span class="w">
+</span></code></pre></div></div>
 
 <h2 id="coq-conditionals-if-then-else">Coq Conditionals (<code class="highlighter-rouge">if then else</code>)</h2>
 
-<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="k">Fixpoint</span><span class="w"> </span><span class="no">nth_error'</span><span class="w"> </span><span class="o">(</span><span class="no">l</span><span class="p">:</span><span class="no">natlist</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="p">:</span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">natoption</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
+<div class="language-coq highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Fixpoint</span><span class="w"> </span><span class="no">nth_error'</span><span class="w"> </span><span class="o">(</span><span class="no">l</span><span class="p">:</span><span class="no">natlist</span><span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="no">n</span><span class="p">:</span><span class="no">nat</span><span class="o">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="no">natoption</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w">
   </span><span class="kr">match</span><span class="w"> </span><span class="no">l</span><span class="w"> </span><span class="kp">with</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">nil</span><span class="w"> </span><span class="p">⇒</span><span class="w"> </span><span class="no">None</span><span class="w">
   </span><span class="o">|</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="p">::</span><span class="w"> </span><span class="no">l'</span><span class="w"> </span><span class="p">⇒</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="no">n</span><span class="w"> </span><span class="o">=?</span><span class="w"> </span><span class="no">O</span><span class="w"> </span><span class="kr">then</span><span class="w"> </span><span class="no">Some</span><span class="w"> </span><span class="no">a</span><span class="w">
                         </span><span class="kr">else</span><span class="w"> </span><span class="no">nth_error'</span><span class="w"> </span><span class="no">l'</span><span class="w"> </span><span class="o">(</span><span class="no">pred</span><span class="w"> </span><span class="no">n</span><span class="o">)</span><span class="w">
   </span><span class="kr">end</span><span class="pi">.</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>One small generalization: since the boolean type in Coq is not built-in. Coq actually supports conditional expr <strong>over any</strong> <em>inductive defined typewith two constructors</em>. First constructor is considered true and false for second.</p>
 

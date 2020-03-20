@@ -1,4 +1,4 @@
-I"�<p>我的日常主力编辑器主要是：</p>
+I"<p>我的日常主力编辑器主要是：</p>
 
 <ul>
   <li>(Neo)Vim</li>
@@ -22,20 +22,7 @@
 
 <p>效果超爽 ;)</p>
 
-<div class="language-applescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre></td><td class="rouge-code"><pre><span class="k">on</span> <span class="nb">run</span><span class="w"> </span><span class="p">{</span><span class="nv">input</span><span class="p">,</span><span class="w"> </span><span class="nv">parameters</span><span class="p">}</span><span class="w">
+<div class="language-applescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">on</span> <span class="nb">run</span><span class="w"> </span><span class="p">{</span><span class="nv">input</span><span class="p">,</span><span class="w"> </span><span class="nv">parameters</span><span class="p">}</span><span class="w">
   </span><span class="k">set</span><span class="w"> </span><span class="nv">filename</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="nv">POSIX</span><span class="w"> </span><span class="na">path</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nv">input</span><span class="w">
   </span><span class="k">set</span><span class="w"> </span><span class="nv">cmd</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="s2">"clear; cd `dirname "</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nv">filename</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="s2">"`;vim "</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nb">quote</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nv">filename</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nb">quote</span><span class="w">
   </span><span class="k">tell</span><span class="w"> </span><span class="nb">application</span><span class="w"> </span><span class="s2">"iTerm"</span><span class="w">
@@ -48,7 +35,7 @@
     </span><span class="k">end</span><span class="w"> </span><span class="k">tell</span><span class="w">
   </span><span class="k">end</span><span class="w"> </span><span class="k">tell</span><span class="w">
 </span><span class="k">end</span><span class="w"> </span><span class="nb">run</span><span class="w">
-</span></pre></td></tr></tbody></table></code></pre></div></div>
+</span></code></pre></div></div>
 
 <p>我这里的代码是采取是用 <code class="highlighter-rouge">iTerm</code> 与唤起 <code class="highlighter-rouge">vim</code>、窗口置前、在新窗口中打开、同时 <code class="highlighter-rouge">cd</code> 到目录。你也可以改成用 macOS 自带的 <code class="highlighter-rouge">Terminal.app</code>、在新窗口而非新 tab 打开、应用不同的 profile、或是执行其他 executable 等……任你发挥啦。</p>
 

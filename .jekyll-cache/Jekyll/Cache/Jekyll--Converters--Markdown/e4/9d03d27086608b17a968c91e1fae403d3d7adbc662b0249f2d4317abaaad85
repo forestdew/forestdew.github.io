@@ -1,4 +1,4 @@
-I"H\<blockquote>
+I"_Z<blockquote>
   <p>这篇文章转载自<a href="https://www.zhihu.com/question/21921588/answer/69680480">我在知乎上的回答</a>，也被刊登于<a href="http://www.uisdc.com/head-first-front-end">优秀网页设计</a>等多个网站上 ;)</p>
 </blockquote>
 
@@ -24,17 +24,12 @@
 <br />对于设计师来说，最有成就感的一定是“可以看到的东西”，而 HTML/CSS 正是用来干这个的，HTML 就是一堆非常简单的标签，而 CSS 无非就是把你画画的流程用<b>英语</b>按一定的格式写出来而已：
 <br /></p>
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="nt">&lt;p&gt;</span> p is paragraph! <span class="nt">&lt;/p&gt;</span>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;p&gt;</span> p is paragraph! <span class="nt">&lt;/p&gt;</span>
 
 <span class="nt">&lt;style&gt;</span>
 <span class="nt">p</span> <span class="p">{</span> <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;}</span>
 <span class="nt">&lt;/style&gt;</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>是不是非常容易，就跟读英语一样！
 <br />接下来，你就需要开始自学啦，比如常用 HTML 标签的意思，各种 CSS 的属性，还有 CSS 的盒模型、优先级、选择器……放心，它们都很容易；能玩得转 PS/AI/Flash/Axure/AE/Sketch 的设计师们，学这个洒洒水啦
@@ -64,22 +59,18 @@
 <br />举个小栗子：
 <br /></p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello World!</span><span class="dl">"</span><span class="p">)</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello World!</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div>
 
 <p>就这一行，就可以在浏览器里弹出 Hello World 啦！
 <br />
 <br />在了解一些基础的 JavaScript 概念（变量、函数、基本类型）后，我们可以直接去学习 jQuery，你不用知道它具体是什么（它是一个 JavaScript 代码库），你只要知道它可以显著地降低你编写交互的难度就好了：
 <br /></p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">.className</span><span class="dl">'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">.className</span><span class="dl">'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
   <span class="nx">alert</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello jQuery</span><span class="dl">"</span><span class="p">)</span>
 <span class="p">})</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre></div></div>
 
 <p>通过 jQuery，我们可以继续使用在 CSS 中学到的“选择器”
 <br />
