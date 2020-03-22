@@ -1,5 +1,5 @@
 # SITE CONFIGURATION
-baseurl: "/forestdew.github.io"
+baseurl: ""
 url: "https://sylhare.github.io"
 
 # THEME-SPECIFIC CONFIGURATION
